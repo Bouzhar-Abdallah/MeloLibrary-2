@@ -25,13 +25,14 @@
           <livewire:search name="artist" />
           <livewire:search name="band" />
           <livewire:search name="genre" />
-
-
-
+          
+          
         </dl>
         <div>
-
-        </div>
+          
+          </div>
+          <livewire:feedback-modal />
+          
         <!-- /End replace -->
       </div>
     </main>

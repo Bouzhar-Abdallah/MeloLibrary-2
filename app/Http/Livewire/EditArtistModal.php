@@ -62,15 +62,19 @@ class EditArtistModal extends ModalComponent
         
         
         $this->closeModalWithEvents([
-            /* FeedbackModal::getName() => ['formModalEvent', ['success']], */
-            FeedbackModal::getName() => 'itemUpdated',
+            FeedbackModal::getName() => ['itemUpdated', ['success']],
             Search::getName()=> 'itemUpdated',
         ]);
         //$this->closeModalWithEvents();
 
         // Emit an event to open the feedback modal
-        $this->emitTo(FeedbackModal::class, 'openModal', 'success');
+        //$this->emitTo(FeedbackModal::class, 'openModal', 'success');
     }
+    public static function modalMinWidth(): string
+{
+    return '5xl';
+}
+
     public function render()
     {
         return view('livewire.edit-artist-modal');

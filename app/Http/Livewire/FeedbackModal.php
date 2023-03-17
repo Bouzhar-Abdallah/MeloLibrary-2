@@ -6,14 +6,16 @@ use LivewireUI\Modal\ModalComponent;
 
 class FeedbackModal extends ModalComponent
 {
-    
-    public $message;
+    public $message= 'xxx';
     public $listeners = [
-        'formModalEvent' => 'showmessage',
+        'itemUpdated' => 'showmessage',
     ];
+    /* public function mount(){
+        $this->closeModal();
+    } */
     public function showmessage($message)
     {
-        dd('test');
+        
         if ($message === 'success') {
             // Show a success message
             $this->message = 'Artist has been updated successfully!';
