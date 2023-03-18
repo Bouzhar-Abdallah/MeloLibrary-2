@@ -7,6 +7,8 @@ use LivewireUI\Modal\ModalComponent;
 class FeedbackModal extends ModalComponent
 {
     public $message= 'xxx';
+    public $showFeedback = false;
+    public $show = false;
     public $listeners = [
         'itemUpdated' => 'showmessage',
     ];

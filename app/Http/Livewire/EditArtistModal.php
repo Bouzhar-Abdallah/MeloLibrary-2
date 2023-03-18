@@ -66,9 +66,9 @@ class EditArtistModal extends ModalComponent
             Search::getName()=> 'itemUpdated',
         ]);
         //$this->closeModalWithEvents();
-
+        
         // Emit an event to open the feedback modal
-        //$this->emitTo(FeedbackModal::class, 'openModal', 'success');
+        $this->emitTo(FeedbackModal::class, 'openModal', 'success');
     }
     public static function modalMinWidth(): string
 {
