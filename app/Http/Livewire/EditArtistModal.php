@@ -11,9 +11,11 @@ class EditArtistModal extends ModalComponent
     public $artist_id;
     public $name;
     public $artist;
+    public $submitted = false;
+    public $success =false;
+    public $failure =false;
     public function mount($artist_id)
     {
-        $this->id = $artist_id;
         $this->artist = artist::find($artist_id);
         $this->name = $this->artist->name;
     }
@@ -30,8 +32,13 @@ class EditArtistModal extends ModalComponent
         /* https://res.cloudinary.com/doy8hfzvk/image/upload/v1677509717/image-not-available_zxhqhk.jpg */
         $artist = artist::find($this->artist_id);
         $artist->name = $this->name;
+        $this->submitted = true;
+        
+        
+        $this->render();
+        $this->success = $artist->save();
+        redirect('dashboard')->with('success', 'Band updated ');
 
-        $artist->save();
        /*  $request->validate([
             'name' => 'required|max:20',
             'country' => 'required|max:20',
@@ -61,14 +68,14 @@ class EditArtistModal extends ModalComponent
         */
         
         
-        $this->closeModalWithEvents([
+        /* $this->closeModalWithEvents([
             FeedbackModal::getName() => ['itemUpdated', ['success']],
             Search::getName()=> 'itemUpdated',
-        ]);
+        ]); */
         //$this->closeModalWithEvents();
         
         // Emit an event to open the feedback modal
-        $this->emitTo(FeedbackModal::class, 'openModal', 'success');
+        //$this->emitTo(FeedbackModal::class, 'openModal', 'success');
     }
     public static function modalMinWidth(): string
 {

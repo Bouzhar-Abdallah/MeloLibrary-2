@@ -31,7 +31,7 @@
         <div>
           
           </div>
-          <livewire:feedback-modal />
+          
           
         <!-- /End replace -->
       </div>
