@@ -37,6 +37,11 @@ class EditArtistModal extends ModalComponent
         
         $this->render();
         $this->success = $artist->save();
+        $this->closeModalWithEvents([
+            FeedbackModal::getName() => ['itemUpdated', ['success']],
+            Search::getName()=> 'itemUpdated',
+        ]);
+        
         redirect('dashboard')->with('success', 'Band updated ');
 
        /*  $request->validate([
@@ -68,10 +73,6 @@ class EditArtistModal extends ModalComponent
         */
         
         
-        /* $this->closeModalWithEvents([
-            FeedbackModal::getName() => ['itemUpdated', ['success']],
-            Search::getName()=> 'itemUpdated',
-        ]); */
         //$this->closeModalWithEvents();
         
         // Emit an event to open the feedback modal
