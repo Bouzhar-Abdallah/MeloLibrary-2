@@ -6,6 +6,7 @@ use App\Models\artist;
 use LivewireUI\Modal\ModalComponent;
 use Livewire\WithFileUploads;
 use Cloudinary;
+
 class NewArtistModal extends ModalComponent
 {
     use WithFileUploads;
@@ -26,23 +27,7 @@ class NewArtistModal extends ModalComponent
         'cover' => 'mimes:png,jpg,jpeg,webp|max:3048',
         'date_of_birth' => 'required'
     ];
-    /*  public function mount()
-    {
-        $this->artist = new stdClass;
-        $this->artist->country = '';
-        $this->artist->date_of_birth = '';
-        $this->artist->cover_url = '';
-     
-    } */
 
-    public function closeAndUpdateHelloWorld()
-    {
-        $this->closeModalWithEvents([
-            /* 'childModalEvent', // Emit global event
-            HelloWorld::getName() => 'childModalEvent', // Emit event to specific Livewire component */
-            HelloWorld::getName() => ['childModalEvent', [10]], // Emit event to specific Livewire component with a parameter            
-        ]);
-    }
     public function save()
     {
         /* $this->submitted = true;
@@ -58,8 +43,6 @@ class NewArtistModal extends ModalComponent
         $artist->cover_url = $result->getSecurePath();
         $artist->cover_id = $result->getPublicId();
 
-
-
         $this->success = $artist->save();
         $this->closeModalWithEvents([
             FeedbackModal::getName() => ['itemUpdated', ['success']],
@@ -68,39 +51,6 @@ class NewArtistModal extends ModalComponent
 
         redirect('dashboard')->with('success', 'Artist created');
 
-        /*  $request->validate([
-            'name' => 'required|max:20',
-            'country' => 'required|max:20',
-            'cover' => 'mimes:png,jpg,jpeg,webp|max:3048',
-            'date_of_birth' => 'required'
-        ]); */
-
-        /* 
-        $file = $request->file('cover');
-        
-        if ($file != null) {
-            $uploadResult = Cloudinary::UploadApi()->upload($file->getPathname());
-            $imageUrl = $uploadResult['secure_url'];
-            $artist->cover_url = $imageUrl;
-            $artist->name = $request->name;
-            $artist->country = $request->country;
-            $artist->date_of_birth = $request->date_of_birth;
-            $artist->save();
-            return redirect('/dashboard')->with('success', 'artist updated');
-        }else {
-            $artist->name = $request->name;
-            $artist->country = $request->country;
-            $artist->date_of_birth = $request->date_of_birth;
-            $artist->save();
-            return redirect('/dashboard')->with('success', 'artist updated ');
-        }
-        */
-
-
-        //$this->closeModalWithEvents();
-
-        // Emit an event to open the feedback modal
-        //$this->emitTo(FeedbackModal::class, 'openModal', 'success');
     }
     public static function modalMinWidth(): string
     {
