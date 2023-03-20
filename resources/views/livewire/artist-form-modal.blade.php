@@ -23,6 +23,7 @@
 @else
 
 <x-modal form-action="{{$form}}">
+
     <x-slot name="title">
         
         <div class="font-bold capitalize">{{$formTitle}}</div>

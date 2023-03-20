@@ -58,7 +58,7 @@
                                     </svg>
                                 </button>
                             </span>
-<a class="bg-red-300 px-4 py-5" href="admin/update/artist/{{$option->id}}">link</a>
+<a class="bg-red-300 px-4 py-5 hidden" href="admin/update/artist/{{$option->id}}">link</a>
                         </div>
 
                     </div>

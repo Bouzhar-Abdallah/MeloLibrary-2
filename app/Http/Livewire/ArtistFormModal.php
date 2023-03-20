@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Livewire\Components\Feedbacks;
 use App\Models\artist;
 use LivewireUI\Modal\ModalComponent;
 use Livewire\WithFileUploads;
@@ -70,9 +71,10 @@ class ArtistFormModal extends ModalComponent
         $this->closeModalWithEvents([
             FeedbackModal::getName() => ['itemUpdated', ['success']],
             Search::getName() => 'itemUpdated',
+            $this->emit('updateFeedback', ['success', 'artist created']),
         ]);
 
-        redirect('dashboard')->with('success', 'Artist created');
+        //redirect('dashboard')->with('success', 'Artist created');
     }
 
     public function update()
@@ -96,12 +98,16 @@ class ArtistFormModal extends ModalComponent
 
 
         $this->success = $this->artist->save();
+        
         $this->closeModalWithEvents([
-            FeedbackModal::getName() => ['itemUpdated', ['success']],
+            //FeedbackModal::getName() => ['itemUpdated', ['success']],
             Search::getName() => 'itemUpdated',
+            //Feedbacks::getName() => ['message', ['success', 'artist updated']],
+            $this->emit('updateFeedback', ['success', 'artist updated']),
+
         ]);
 
-        redirect('dashboard')->with('success', 'Artist updated');
+        //redirect('dashboard')->with('success', 'Artist updated');
     }
     public static function modalMinWidth(): string
     {
