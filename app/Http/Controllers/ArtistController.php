@@ -35,6 +35,7 @@ class ArtistController extends Controller
             //$imageUrl = Cloudinary::upload($request->file('cover')->getRealPath())->getSecurePath();
 
             $artist->cover_url = $result->getPath();
+            //getSecurePath();
             $artist->cover_id = $result->getPublicId();
             $artist->name = $request->name;
             $artist->country = $request->country;

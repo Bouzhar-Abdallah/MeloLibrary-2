@@ -7,13 +7,13 @@
 
             <span class="relative z-0 ml-2 inline-flex shadow-sm rounded-md ">
                 <div class="">
-                    <span class="sr-only">add new</span>
+                    <span class="sr-only">search</span>
                     <!-- <x-text-input wire:model="search" type="text" placeholder="Search {{$name}}s..." class="block w-auto" type="text" autocomplete="name" /> -->
                     <input class="relative inline-flex items-center  rounded-l-md border border-gray-300 bg-white text-sm hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" wire:model="search" placeholder="Search {{$name}}s..." type="text" name="" id="{{$name}}">
                 </div>
 
-                <button type="button" class="-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-                    <span class="sr-only">search</span>
+                <button wire:click='$emit("openModal", "new-artist-modal")' type="button" class="-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                    <span class="sr-only">add new</span>
 
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
