@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\artist;
 use Illuminate\Http\Request;
 use Cloudinary;
+
 class ArtistController extends Controller
 {
     public function update($id){
@@ -24,11 +25,9 @@ class ArtistController extends Controller
         $file = $request->file('cover');
         
         if ($file != null) {
-            $uploadResult = Cloudinary::UploadApi()->upload($file->getPathname());
-            $imageUrl = $uploadResult['secure_url'];
-            /* if ($imageUrl) {
-                # code...
-            } */
+            //$imageUrl  = $file->storeOnCloudinary();
+            $imageUrl = Cloudinary::upload($request->file('cover')->getRealPath())->getSecurePath();
+            
             $artist->cover_url = $imageUrl;
             $artist->name = $request->name;
             $artist->country = $request->country;
