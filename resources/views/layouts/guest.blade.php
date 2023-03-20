@@ -19,5 +19,5 @@
         {{$slot}}
     </body>
     @livewireScripts
-    <livewire:edit-modal />
+    @livewire('livewire-ui-modal')
 </html>
