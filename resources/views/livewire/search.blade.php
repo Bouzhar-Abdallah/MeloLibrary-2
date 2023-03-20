@@ -30,9 +30,12 @@
 
             <li class="py-4 px-3">
                 <div class="flex items-center space-x-4">
+                    @if ($option->cover_url)
+                        
                     <div class="flex-shrink-0">
                         <img class="h-8 w-8 rounded-full" src="{{$option->cover_url}}" alt="n">
                     </div>
+                    @endif
                     <div class="flex-1 min-w-0">
                         <p class="text-sm font-medium text-gray-900 truncate">{{$option->name}}</p>
                         <p class="text-sm text-gray-500 truncate">total songs: {{$option->songs_count}} </p>
