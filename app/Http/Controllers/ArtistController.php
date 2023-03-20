@@ -26,7 +26,7 @@ class ArtistController extends Controller
 
         $file = $request->file('cover');
 
-        if ($file != null) {
+        if ($request->has('cover')) {
             $result  = $file->storeOnCloudinary();
 
             
@@ -35,6 +35,7 @@ class ArtistController extends Controller
             //$imageUrl = Cloudinary::upload($request->file('cover')->getRealPath())->getSecurePath();
 
             $artist->cover_url = $result->getPath();
+            $artist->cover_id = $result->getPublicId();
             $artist->name = $request->name;
             $artist->country = $request->country;
             $artist->date_of_birth = $request->date_of_birth;
