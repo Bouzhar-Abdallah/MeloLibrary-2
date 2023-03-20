@@ -1,20 +1,4 @@
-<!--
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
-<div class="relative bg-gray-800 overflow-hidden">
+<div class="relative bg-gray-800 h-screen overflow-hidden">
   <div class="hidden sm:block sm:absolute sm:inset-0" aria-hidden="true">
     <svg class="absolute bottom-0 right-0 transform translate-x-1/2 mb-48 text-gray-700 lg:top-0 lg:mt-28 lg:mb-0 xl:transform-none xl:translate-x-0" width="364" height="384" viewBox="0 0 364 384" fill="none">
       <defs>
@@ -25,8 +9,8 @@
       <rect width="364" height="384" fill="url(#eab71dd9-9d7a-47bd-8044-256344ee00d0)" />
     </svg>
   </div>
-  <div class="relative pt-6 pb-16 sm:pb-24">
-    <div>
+  <div class="relative pt-6 pb-16 sm:pb-24 h-full">
+    <div class="">
       <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6" aria-label="Global">
         <div class="flex items-center flex-1">
           <div class="flex items-center justify-between w-full md:w-auto">
@@ -57,19 +41,12 @@
         <!-- <div class="hidden md:flex">
           <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"> Log in </a>
         </div> -->
-        <x-login_button/>
+        <button class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+          Log in
+        </button>
       </nav>
 
-      <!--
-        Mobile menu, show/hide based on menu open state.
 
-        Entering: "duration-150 ease-out"
-          From: "opacity-0 scale-95"
-          To: "opacity-100 scale-100"
-        Leaving: "duration-100 ease-in"
-          From: "opacity-100 scale-100"
-          To: "opacity-0 scale-95"
-      -->
       <div class="absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
         <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
           <div class="px-5 pt-4 flex items-center justify-between">
@@ -94,9 +71,8 @@
             <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Marketplace</a>
 
             <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Company</a>
-          </
-           <div class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100"> 
-           <x-login_button/>  
+            </ <div class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100">
+
           </div>
         </div>
       </div>
@@ -139,7 +115,7 @@
           <div class="mt-16 sm:mt-24 lg:mt-0 lg:col-span-6">
             <div class="bg-white sm:max-w-md sm:w-full sm:mx-auto sm:rounded-lg sm:overflow-hidden">
               <div class="px-4 py-8 sm:px-10">
-                <div>
+                <div class="hidden">
                   <p class="text-sm font-medium text-gray-700">Sign in with</p>
 
                   <div class="mt-1 grid grid-cols-3 gap-3">
@@ -172,66 +148,61 @@
                   </div>
                 </div>
 
-                <div class="mt-6 relative">
+                <div class="mt-2 relative">
                   <div class="absolute inset-0 flex items-center" aria-hidden="true">
                     <div class="w-full border-t border-gray-300"></div>
                   </div>
                   <div class="relative flex justify-center text-sm">
-                    <span class="px-2 bg-white text-gray-500"> Or </span>
+                    <span class="px-2 bg-white text-gray-500"> Sign in </span>
                   </div>
                 </div>
 
-                <div class="mt-6">
-                <form method="POST" action="{{ route('register') }}">
-        @csrf
+                <div class="mt-2">
+                  <form method="POST" action="{{ route('register') }}">
+                    @csrf
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+                    <!-- Name -->
+                    <div>
+                      <x-input-label for="name" :value="__('Name')" />
+                      <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                      <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                    </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+                    <!-- Email Address -->
+                    <div class="mt-4">
+                      <x-input-label for="email" :value="__('Email')" />
+                      <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                      <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+                    <!-- Password -->
+                    <div class="mt-4">
+                      <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+                      <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+                      <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                    <!-- Confirm Password -->
+                    <div class="mt-4">
+                      <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+                      <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+                      <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                    </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
+                    <div class="flex items-center justify-end mt-4">
+                      <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+                        {{ __('Already registered?') }}
+                      </a>
 
-            <x-primary-button class="ml-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
+                      <x-primary-button class="ml-4">
+                        {{ __('Register') }}
+                      </x-primary-button>
+                    </div>
+                  </form>
                 </div>
               </div>
               <div class="px-4 py-6 bg-gray-50 border-t-2 border-gray-200 sm:px-10">

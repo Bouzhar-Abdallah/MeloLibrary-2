@@ -42,7 +42,7 @@
       </div>
     </main>
   </div>
-  <script>
+<!--   <script>
     function showEditModal(id='', name='') {
         var payload = {
             id: id,
@@ -51,5 +51,5 @@
         window.livewire.emitTo('edit-modal', 'show', payload);
     }
    
-</script>
+</script> -->
 </x-app-layout>
