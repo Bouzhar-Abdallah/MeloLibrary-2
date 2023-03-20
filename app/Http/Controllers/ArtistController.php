@@ -29,8 +29,8 @@ class ArtistController extends Controller
         if ($file != null) {
             $result  = $file->storeOnCloudinary();
 
-            $components = Cloudinary::parseUrl($artist->cover_url);
-            $publicId = $components['public_id'];
+            
+            $publicId = $artist->cover_id;
             Cloudinary::destroy($publicId);
             //$imageUrl = Cloudinary::upload($request->file('cover')->getRealPath())->getSecurePath();
 
