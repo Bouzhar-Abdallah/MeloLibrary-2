@@ -21,18 +21,24 @@ class NewArtistModal extends ModalComponent
     public $success = false;
     public $failure = false;
 
-    protected $rules = [
+    protected $rules_with_cover = [
         'name' => 'required|max:20',
         'country' => 'required|max:20',
         'cover' => 'mimes:png,jpg,jpeg,webp|max:3048',
         'date_of_birth' => 'required'
     ];
 
-    public function save()
+    protected $rules_without_cover = [
+        'name' => 'required|max:20',
+        'country' => 'required|max:20',
+        'date_of_birth' => 'required'
+    ];
+
+    public function create()
     {
         /* $this->submitted = true;
         $this->render(); */
-        $this->validate();
+        $this->validate($this->rules_with_cover);
 
         $artist = new artist;
         $artist->name = $this->name;
@@ -50,7 +56,33 @@ class NewArtistModal extends ModalComponent
         ]);
 
         redirect('dashboard')->with('success', 'Artist created');
+    }
 
+    public function update()
+    {
+        if ($this->cover) {
+            
+        }else {
+            
+        }
+        $this->validate($this->rules_without_cover);
+
+        $artist = new artist;
+        $artist->name = $this->name;
+        $artist->country = $this->country;
+        $artist->date_of_birth = $this->date_of_birth;
+
+        $result = $this->cover->storeOnCloudinary();
+        $artist->cover_url = $result->getSecurePath();
+        $artist->cover_id = $result->getPublicId();
+
+        $this->success = $artist->save();
+        $this->closeModalWithEvents([
+            FeedbackModal::getName() => ['itemUpdated', ['success']],
+            Search::getName() => 'itemUpdated',
+        ]);
+
+        redirect('dashboard')->with('success', 'Artist created');
     }
     public static function modalMinWidth(): string
     {
