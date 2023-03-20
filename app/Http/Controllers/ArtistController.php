@@ -8,11 +8,13 @@ use Cloudinary;
 
 class ArtistController extends Controller
 {
-    public function update($id){
+    public function update($id)
+    {
         $artist = artist::find($id);
-        return view('artist-form',compact('artist'));
+        return view('artist-form', compact('artist'));
     }
-    public function edit(Request $request, $id){
+    public function edit(Request $request, $id)
+    {
         /* https://res.cloudinary.com/doy8hfzvk/image/upload/v1677509717/image-not-available_zxhqhk.jpg */
         $artist = artist::find($id);
         $request->validate([
@@ -21,20 +23,25 @@ class ArtistController extends Controller
             'cover' => 'mimes:png,jpg,jpeg,webp|max:3048',
             'date_of_birth' => 'required'
         ]);
-        
+
         $file = $request->file('cover');
-        
+
         if ($file != null) {
-            //$imageUrl  = $file->storeOnCloudinary();
-            $imageUrl = Cloudinary::upload($request->file('cover')->getRealPath())->getSecurePath();
-            
-            $artist->cover_url = $imageUrl;
+            $result  = $file->storeOnCloudinary();
+
+            $components = Cloudinary::parseUrl($artist->cover_url);
+            $publicId = $components['public_id'];
+            Cloudinary::destroy($publicId);
+            //$imageUrl = Cloudinary::upload($request->file('cover')->getRealPath())->getSecurePath();
+
+            $artist->cover_url = $result->getPath();
             $artist->name = $request->name;
             $artist->country = $request->country;
             $artist->date_of_birth = $request->date_of_birth;
             $artist->save();
+
             return redirect('/dashboard')->with('success', 'artist updated');
-        }else {
+        } else {
             $artist->name = $request->name;
             $artist->country = $request->country;
             $artist->date_of_birth = $request->date_of_birth;
@@ -43,7 +50,8 @@ class ArtistController extends Controller
         }
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $artist = artist::find($id);
         $artist->delete();
         return redirect('/dashboard')->with('success', 'artist deleted ');
