@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\modals;
 
 use App\Http\Livewire\Components\Feedbacks;
+use App\Http\Livewire\Components\Search as Search;
 use App\Models\artist;
 use LivewireUI\Modal\ModalComponent;
 use Livewire\WithFileUploads;
@@ -116,6 +117,6 @@ class ArtistFormModal extends ModalComponent
 
     public function render()
     {
-        return view('livewire.artist-form-modal');
+        return view('livewire.modals.artist-form-modal');
     }
 }
