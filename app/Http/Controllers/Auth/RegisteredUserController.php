@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Models\UserRole;
+
 class RegisteredUserController extends Controller
 {
     /**
@@ -43,8 +45,10 @@ class RegisteredUserController extends Controller
         ]);
 
         //atatch user role to newlly created account
-        $user->roles()->attach(3);
-       
+        $role = Role::find(3); // Assumes role ID 1 is the "admin" role
+        $user->role()->associate($role);
+        $user->save();
+
 
         event(new Registered($user));
 

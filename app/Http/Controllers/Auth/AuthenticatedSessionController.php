@@ -50,13 +50,13 @@ class AuthenticatedSessionController extends Controller
      */
     protected function redirectTo(): string
     {
-        $role = Auth::user()->userRole->role_id;
-
-        if ($role == 1) {
+        $role = Auth::user()->role->name;
+        //dd($role->name);
+        if ($role == 'admin') {
             return route('admin.dashboard');
         } elseif ($role == 2) {
             return route('executive.dashboard');
-        } elseif ($role == 3) {
+        } elseif ($role == 'user') {
             return route('user');
         } else {
             return RouteServiceProvider::HOME;
