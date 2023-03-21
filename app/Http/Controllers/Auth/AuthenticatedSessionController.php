@@ -43,7 +43,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/dashboard')->with('success', 'logged out succesefully');;
+        return redirect('/')->with('success', 'logged out succesefully');;
     }
 
     /**
@@ -53,14 +53,14 @@ class AuthenticatedSessionController extends Controller
     {
         $role = Auth::user()->role->name;
         //dd($role->name);
-        if ($role == 'Admin') {
+        if ($role == 'admin') {
             return route('dashboard');
         } elseif ($role == 'SuperAdmin') {
             return route('dashboard');
-        } elseif ($role == 'User') {
+        } elseif ($role == 'user') {
             return route('dashboard');
-        } else {
+        } /* else {
             return RouteServiceProvider::HOME;
-        }
+        } */
     }
 }

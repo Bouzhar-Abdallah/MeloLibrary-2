@@ -11,7 +11,7 @@ use LivewireUI\Modal\ModalComponent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
-
+use App\Providers\RouteServiceProvider;
 class LoginFormModal extends ModalComponent
 {
     public $email;
