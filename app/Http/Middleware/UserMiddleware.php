@@ -16,7 +16,7 @@ class UserMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         
-        if(auth::check() && Auth::user()->userRole->role_id  == 3){
+        if(auth::check() && Auth::user()->Role->name == 'user'){
             return $next($request);
         }
         else {

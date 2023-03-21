@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\BandController;
 use App\Http\Controllers\FileUploadController;
-
+use App\Http\Middleware\UserMiddleware as UserMiddleware; 
 
 //use App\Http\Middleware\UserMiddleware;
 /*
@@ -68,9 +68,9 @@ Route::get('/admin/delete/band/{id}', [BandController::class, 'delete'])->name('
 
 
 //route for user
-/* Route::group(['prefix' => 'user','middleware'=>['auth',\App\Http\Middleware\UserMiddleware::class]], function () {
-    Route::get('/', [DashboardController::class, 'user'])->name('user');
-}); */
+Route::group(['middleware'=>['auth',UserMiddleware::class]], function () {
+    Route::get('/user', [DashboardController::class, 'user'])->name('user');
+});
 
 
 
