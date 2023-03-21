@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended($this->redirectTo());
+        return redirect()->intended($this->redirectTo())->with('success', 'logged in succesefully');
     }
 
     /**
@@ -42,7 +42,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/dashboard')->with('success', 'logged out succesefully');;
     }
 
     /**
@@ -52,12 +52,12 @@ class AuthenticatedSessionController extends Controller
     {
         $role = Auth::user()->role->name;
         //dd($role->name);
-        if ($role == 'admin') {
-            return route('admin.dashboard');
+        if ($role == 'Admin') {
+            return route('dashboard');
         } elseif ($role == 2) {
-            return route('executive.dashboard');
-        } elseif ($role == 'user') {
-            return route('user');
+            return route('dashboard');
+        } elseif ($role == 'User') {
+            return route('dashboard');
         } else {
             return RouteServiceProvider::HOME;
         }

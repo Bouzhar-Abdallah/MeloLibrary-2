@@ -35,7 +35,7 @@
 
             <a href="#" class="font-medium text-white hover:text-gray-300">Marketplace</a>
 
-            <a href="#" class="font-medium text-white hover:text-gray-300">Company</a>
+            <a href="/dashboard" class="font-medium text-white hover:text-gray-300">dashboard</a>
           </div>
         </div>
         <!-- <div class="hidden md:flex">
