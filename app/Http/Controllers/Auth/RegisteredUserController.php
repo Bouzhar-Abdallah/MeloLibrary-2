@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Models\UserRole;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class RegisteredUserController extends Controller
 {
@@ -54,6 +55,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect('dashboard')->with('success', 'regestred success');
     }
 }
