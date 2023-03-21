@@ -69,7 +69,7 @@ Route::get('/admin/delete/band/{id}', [BandController::class, 'delete'])->name('
 
 //route for user
 Route::group(['middleware'=>['auth',UserMiddleware::class]], function () {
-    Route::get('/user', [DashboardController::class, 'user'])->name('user');
+    Route::get('/user', [DashboardController::class, 'user'])->name('home');
 });
 
 

@@ -52,7 +52,7 @@
           </div>
           <div class="flex-1 mt-6 w-full px-2 space-y-1">
             <!-- Current: "bg-indigo-800 text-white", Default: "text-indigo-100 hover:bg-indigo-800 hover:text-white" -->
-            <a href="#" class="text-indigo-100 hover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium">
+            <a href="/" class="text-indigo-100 hover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium">
               <!--
             Heroicon name: outline/home
 
@@ -115,39 +115,11 @@
   -->
       <div class="md:hidden" role="dialog" aria-modal="true">
         <div class="fixed inset-0 z-40 flex">
-          <!--
-        Off-canvas menu overlay, show/hide based on off-canvas menu state.
-
-        Entering: "transition-opacity ease-linear duration-300"
-          From: "opacity-0"
-          To: "opacity-100"
-        Leaving: "transition-opacity ease-linear duration-300"
-          From: "opacity-100"
-          To: "opacity-0"
-      -->
+ 
           <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
 
-          <!--
-        Off-canvas menu, show/hide based on off-canvas menu state.
-
-        Entering: "transition ease-in-out duration-300 transform"
-          From: "-translate-x-full"
-          To: "translate-x-0"
-        Leaving: "transition ease-in-out duration-300 transform"
-          From: "translate-x-0"
-          To: "-translate-x-full"
-      -->
           <div class="relative max-w-xs w-full bg-indigo-700 pt-5 pb-4 flex-1 flex flex-col">
-            <!--
-          Close button, show/hide based on off-canvas menu state.
 
-          Entering: "ease-in-out duration-300"
-            From: "opacity-0"
-            To: "opacity-100"
-          Leaving: "ease-in-out duration-300"
-            From: "opacity-100"
-            To: "opacity-0"
-        -->
             <div class="absolute top-1 right-0 -mr-14 p-1">
               <button type="button" class="h-12 w-12 rounded-full flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white">
                 <!-- Heroicon name: outline/x -->
@@ -306,7 +278,7 @@
           </main>
 
           <!-- Secondary column (hidden on smaller screens) -->
-          <aside class="hidden w-96 bg-white border-l border-gray-200 overflow-y-auto lg:block">
+          <aside class=" w-96 bg-white border-l border-gray-200 overflow-y-auto lg:block">
             <!-- Your content -->
           </aside>
         </div>
