@@ -1,4 +1,5 @@
-<x-modal form-action="login">
+
+<x-modal form-action="login" wire:submit.prevent="login">
 
     <x-slot name="title">
 
@@ -64,7 +65,7 @@
 
             
             <x-primary-button class="ml-auto">
-                {{ __('Log in') }}
+                submit
             </x-primary-button>
         </div>
     

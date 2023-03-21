@@ -16,6 +16,7 @@ class LoginRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        //dd($this->only('email'));
         return true;
     }
 
