@@ -21,6 +21,11 @@ use App\Http\Controllers\FileUploadController;
 |
 */
 
+use App\Http\Livewire\Modals\ArtistFormModal;
+
+Route::middleware(['auth', 'checkRole:admin'])->group(function () {
+    Route::get('/artist-form-modal', ArtistFormModal::class)->name('artist-form-modal');
+});
 
 /* public home route */
 Route::get('/', function () {

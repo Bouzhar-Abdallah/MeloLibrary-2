@@ -40,6 +40,10 @@ class ArtistFormModal extends ModalComponent
 
     public function mount($id = '')
     {
+        if (!auth()->check() || auth()->user()->role->name !== 'user') {
+            // Prevent the component from rendering
+            return abort(403, 'Unauthorized action.');
+        }
         if ($id == '') {
             $this->formTitle = 'create new artist';
             $this->form = 'create';
