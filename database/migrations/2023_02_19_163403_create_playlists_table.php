@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('playlists', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('song_id')->constrained('songs');
             $table->timestamps();
         });
     }

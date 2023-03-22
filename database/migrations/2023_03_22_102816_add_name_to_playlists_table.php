@@ -12,7 +12,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('playlists', function (Blueprint $table) {
-            $table->string('name')->unique()->after('id');
+
+            $table->string('name')->nullable()->after('id');
+            $table->unique(['user_id', 'name']);
         });
     }
 
