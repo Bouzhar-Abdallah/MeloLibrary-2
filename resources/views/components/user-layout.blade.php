@@ -16,8 +16,8 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased h-full overflow-hidden">
-  <div class="min-h-screen bg-gray-100">
+<div class="min-h-screen bg-gray-100">
+    <body class="font-sans antialiased h-full overflow-hidden">
 
     <!--
   This example requires Tailwind CSS v2.0+ 
