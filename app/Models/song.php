@@ -31,4 +31,9 @@ class song extends Model
     {
         return $this->belongsToMany(Writer::class);
     }
+
+    public function playlists()
+    {
+        return $this->belongsToMany(Playlist::class, 'playlist_song');
+    }
 }

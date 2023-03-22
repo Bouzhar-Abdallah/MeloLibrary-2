@@ -13,13 +13,28 @@ class playlist extends Component
     /**
      * Create a new component instance.
      */
-    public $playlist;
-    public $username;
+    public $playlists;
+    public $user;
     public function __construct()
     {
-        $this->username = Auth::user()->id;
-        $this->playlist = ModelsPlaylist::get();
-        dd($this->playlist);
+        $this->user = Auth::user();
+        
+        //$this->playlists = $this->user->playlists();
+        $this->playlists = $this->user->playlists()->with('songs')->get();
+        //$this->playlists = $this->user->with('playlists.songs');
+
+        /* foreach ($user->playlists as $playlist) {
+            echo "Playlist Name: " . $playlist->name . PHP_EOL;
+            echo "Songs:" . PHP_EOL;
+
+            foreach ($playlist->songs as $song) {
+                echo "- " . $song->title . PHP_EOL;
+            }
+
+            echo PHP_EOL;
+        } */
+
+       //dd($this->playlists);
     }
 
     /**
