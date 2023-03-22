@@ -16,14 +16,20 @@ class Aside extends Component
     {
         $this->playing_playlist = $playlist;
         //dd($this->playing_playlist->name);
-        
+
     }
-    public function mount(){
+    public function mount()
+    {
         $this->user = Auth::user();
         //$this->playlists = $this->user->playlists();
         $this->playlists = $this->user->playlists()->with('songs')->get();
-        $this->playing_playlist= $this->playlists[1];
-        
+
+        if ($this->playlists->isEmpty()) {
+            // Handle the case when there are no playlists
+            $this->playing_playlist = null;
+        } else {
+            $this->playing_playlist = $this->playlists[1];
+        }
     }
     public function render()
     {

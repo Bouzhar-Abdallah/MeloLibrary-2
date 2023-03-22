@@ -1,6 +1,7 @@
-<div>
 
 
+<div x-data="musicPlayer()" x-init="init()">
+  <template x-if="currentplaylist && currentTrack">
   <div x-data="musicPlayer()" x-init="init()">
     <div class=" bg-gray-100 flex flex-col items-center justify-center">
       <div class="max-w-xl bg-white rounded-lg shadow-lg w-full">
@@ -146,62 +147,65 @@
 
     @endforeach
   </div>
+  </template>
+  <template x-if="!currentplaylist">
+    <div class="bg-gray-100 flex items-center justify-center h-screen">
+      <h2 class="text-xl text-gray-600">No playlist available</h2>
+    </div>
+  </template>
 
-  <script>
-    let playlists = JSON.parse('<?php echo json_encode($playlists); ?>');
+<script>
+  let playlists = JSON.parse('<?php echo json_encode($playlists); ?>');
   
-    function musicPlayer() {
-      //playlists = @entangle('playlists');
-      console.log(playlists)
-      return {
-        isPlaying: false,
-        currentTrack: {
-          title: '',
-          url: ''
-        },
-        currentplaylist: {
-          name: playlists[0].name
-        },
-        tracks: [], // We will update this with the songs from the selected playlist
-        trackIndex: 0,
+  function musicPlayer() {
+    //playlists = @entangle('playlists');
+    console.log(playlists)
+    return {
+      isPlaying: false,
+      currentTrack: playlists.length > 0 ? { title: '', url: '' } : null,
+      currentplaylist: playlists.length > 0 ? { name: playlists[0].name } : null,
+      tracks: [], // We will update this with the songs from the selected playlist
+      trackIndex: 0,
   
-        init() {
+      init() {
+        if (playlists.length > 0) {
           this.tracks = playlists[0].songs; // Set the initial playlist's songs
           this.currentTrack = this.tracks[this.trackIndex];
-        },
+        }
+      },
   
-        setPlayingPlaylist(playlist) {
-          console.log(playlist)
-          this.tracks = playlist.songs;
-          this.currentplaylist.name = playlist.name;
-          this.trackIndex = 0;
-          this.currentTrack = this.tracks[this.trackIndex];
-        },
+      setPlayingPlaylist(playlist) {
+        console.log(playlist)
+        this.tracks = playlist.songs;
+        this.currentplaylist.name = playlist.name;
+        this.trackIndex = 0;
+        this.currentTrack = this.tracks[this.trackIndex];
+      },
   
-        play() {
-          const audio = this.$refs.audioPlayer;
+      play() {
+        const audio = this.$refs.audioPlayer;
   
-          if (this.isPlaying) {
-            audio.pause();
-          } else {
-            audio.play();
-          }
+        if (this.isPlaying) {
+          audio.pause();
+        } else {
+          audio.play();
+        }
   
-          this.isPlaying = !this.isPlaying;
-        },
-        playPrevious() {
-          this.trackIndex = (this.trackIndex - 1 + this.tracks.length) % this.tracks.length;
-          this.currentTrack = this.tracks[this.trackIndex];
-          this.isPlaying = true;
-          this.$refs.audioPlayer.play();
-        },
-        playNext() {
-          this.trackIndex = (this.trackIndex + 1) % this.tracks.length;
-          this.currentTrack = this.tracks[this.trackIndex];
-          this.isPlaying = true;
-          this.$refs.audioPlayer.play();
-        },
-      };
-    }
-  </script>
+        this.isPlaying = !this.isPlaying;
+      },
+      playPrevious() {
+        this.trackIndex = (this.trackIndex - 1 + this.tracks.length) % this.tracks.length;
+        this.currentTrack = this.tracks[this.trackIndex];
+        this.isPlaying = true;
+        this.$refs.audioPlayer.play();
+      },
+      playNext() {
+        this.trackIndex = (this.trackIndex + 1) % this.tracks.length;
+        this.currentTrack = this.tracks[this.trackIndex];
+        this.isPlaying = true;
+        this.$refs.audioPlayer.play();
+      },
+    };
+  }
+</script>
 </div>
