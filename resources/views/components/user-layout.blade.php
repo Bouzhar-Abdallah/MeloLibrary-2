@@ -279,7 +279,7 @@
 
           <!-- Secondary column (hidden on smaller screens) -->
           <aside class=" w-96 bg-white border-l border-gray-200 overflow-y-auto lg:block">
-            <!-- Your content -->
+            <x-music.playlist />
           </aside>
         </div>
       </div>
