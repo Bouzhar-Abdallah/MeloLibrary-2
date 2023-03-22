@@ -4,7 +4,7 @@
     <div class="relative h-20">
       
       <div class=" p-2 inset-0 flex flex-col justify-end bg-indigo-500 to-gray-900 backdrop backdrop-blur-5 text-white">
-        <h3 class="font-bold">$playing_playlist</h3>
+        <h3 class="font-bold">{{$playing_playlist}}</h3>
         <span x-text="currentTrack.title" class="opacity-70">Albumtitle</span>
         
       </div>

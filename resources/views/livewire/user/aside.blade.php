@@ -1,6 +1,6 @@
 @if ($playing_playlist)
-<x-music.media_player :playlist_naame="$playing_playlist"/>
-    
+{{$playing_playlist}}
+<livewire:music.media-player :playing_playlist="$playing_playlist"/>
 @endif
 
 

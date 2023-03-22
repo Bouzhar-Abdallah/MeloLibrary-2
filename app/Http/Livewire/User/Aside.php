@@ -8,7 +8,7 @@ use Livewire\Component;
 class Aside extends Component
 {
     public $playlists;
-    public $playing_playlist = 'playlist name test';
+    public $playing_playlist = '';
     public $user;
 
     public function setPlayingPlaylist($playlistName)

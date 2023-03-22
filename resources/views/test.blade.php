@@ -19,15 +19,7 @@
 
 <body class="antialiased">
 
-    <div x-data="{ open: false }">
-        <button @click="open = ! open">Toggle Content</button>
-
-        <div x-show="open">
-            Content...
-        </div>
-    </div>
-    <button onclick="Livewire.emit('openModal', 'hello-world')">Open Modal</button>
-
+    <x-music.media-player />
 </body>
 @livewire('livewire-ui-modal')
     @livewireScripts

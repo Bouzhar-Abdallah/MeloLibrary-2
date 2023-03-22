@@ -31,13 +31,16 @@ Route::middleware(['auth', 'checkRole:admin'])->group(function () {
 Route::get('/', function () {
     return view('guest');
 });
+Route::get('/test', function () {
+    return view('test');
+});
     
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/test', [SongController::class, 'test']);
+
 
 Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
 Route::get('/admin/song/new', [SongController::class, 'index'])->name('admin.song');
