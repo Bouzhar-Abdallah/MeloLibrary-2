@@ -1,12 +1,14 @@
 <div>
 @if ($playing_playlist)
-<div x-data="musicPlayer()" x-init="init()">
+
+<div x-effect="musicPlayer()" x-data="musicPlayer()" x-init="init()">
   <div class=" bg-gray-100 flex flex-col items-center justify-center">
     <div class="max-w-xl bg-white rounded-lg shadow-lg w-full">
       <div class="relative h-20">
 
         <div class=" p-2 inset-0 flex flex-col justify-end bg-indigo-500 to-gray-900 backdrop backdrop-blur-5 text-white">
-          <h3 class="font-bold">{{$playing_playlist}}</h3>
+          
+          
           <span x-text="currentTrack.title" class="opacity-70">Albumtitle</span>
 
         </div>
@@ -92,12 +94,20 @@
 
 
 <script>
-  function musicPlayer() {
+  
+    function musicPlayer() {
+    const playing_playlist = @entangle('playing_playlist');
+  
+  
+  console.log(playing_playlist);
     return {
       isPlaying: false,
       currentTrack: {
         title: '',
         url: ''
+      },
+      currentplaylist:{
+        name: playing_playlist.name
       },
       tracks: [
         // Add your Cloudinary music file URLs here
@@ -148,7 +158,7 @@
 
 
 @foreach ($playlists as $playlist )
-<button wire:click="setPlayingPlaylist('{{ $playlist->name }}')">Set as playing playlist</button>
+<button wire:click="setPlayingPlaylist('{{ $playlist}}')">Set as playing playlist</button>
 <div id="accordion-collapse-{{$playlist->id}}" data-accordion="collapse">
     <h2 id="accordion-collapse-heading-{{$playlist->id}}">
         <div type="button" class="flex items-center justify-between w-full font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" >
