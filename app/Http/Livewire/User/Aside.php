@@ -18,15 +18,51 @@ class Aside extends Component
         //dd($this->playing_playlist->name);
 
     }
+    public function arrangeData($playlists){
+        foreach ($playlists as $playlist) {
+            foreach ($playlist->songs as $song) {
+                $song_owners = [];
+
+                foreach ($song->bands as $band) {
+                    $song_owners[] = $band->name;
+                }
+
+                foreach ($song->artists as $artist) {
+                    $song_owners[] = $artist->name;
+                }
+
+                $song->song_owners = $song_owners;
+
+                $genre_names = [];
+                foreach ($song->genres as $genre) {
+                    $genre_names[] = $genre->name;
+                }
+                $song->genre_names = $genre_names;
+
+                $writer_names = [];
+                foreach ($song->writers as $writer) {
+                    $writer_names[] = $writer->name;
+                }
+                $song->writer_names = $writer_names;
+            }
+        }
+        return $playlists;
+    }
     public function mount()
     {
         $this->user = Auth::user();
         //$this->playlists = $this->user->playlists();
-        $this->playlists = $this->user->playlists()
+        /* $this->playlists = $this->user->playlists()
         ->with('songs')
         ->with('songs.artists', 'songs.bands', 'songs.genres')
-        ->get();
-
+        ->get(); */
+        $playlists = $this->user->playlists()
+            ->withCount(['songs as tracks_count'])
+            ->with('songs')
+            ->with('songs.bands', 'songs.genres', 'songs.artists', 'songs.writers')
+            ->get();
+        $this->playlists = $this->arrangeData($playlists);
+        //dd($this->playlists[0]->songs);
         if ($this->playlists->isEmpty()) {
             // Handle the case when there are no playlists
             $this->playing_playlist = null;

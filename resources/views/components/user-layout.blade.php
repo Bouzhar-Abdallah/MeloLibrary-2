@@ -274,7 +274,7 @@
             <section aria-labelledby="primary-heading" class="min-w-full bg-indigo-300 flex-1 h-full flex flex-col lg:order-last">
 
               {{ $slot }}
-              <!-- Your content -->
+              
             </section>
           </main>
 
@@ -282,11 +282,11 @@
           <aside class=" w-96 bg-white border-l border-gray-200 overflow-y-auto lg:block">
             
             <livewire:user.aside />
+            
           </aside>
         </div>
       </div>
     </div>
-
 
 
   </div>
