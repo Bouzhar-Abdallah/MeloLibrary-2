@@ -31,7 +31,7 @@ class Aside extends Component
             // Handle the case when there are no playlists
             $this->playing_playlist = null;
         } else {
-            $this->playing_playlist = $this->playlists[1];
+            $this->playing_playlist = $this->playlists[0];
         }
     }
     public function render()
