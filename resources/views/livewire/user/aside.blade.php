@@ -26,10 +26,16 @@
                   <line x1="5" y1="19" x2="5" y2="5"></line>
                 </svg>
               </button>
-              <button id="play-pause-button" class="rounded-full w-8 h-8 flex items-center justify-center pl-0.5 ring-2 ring-gray-100 focus:outline-none">
+              <button id="play-play-button" class=" rounded-full w-8 h-8 flex items-center justify-center pl-0.5 ring-2 ring-gray-100 focus:outline-none">
                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
+              </button>
+              <button id="play-pause-button" class="rounded-full w-8 h-8 hidden items-center justify-center pl-0.5 ring-2 ring-gray-100 focus:outline-none">
+                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
+                </svg>
+                
               </button>
               <button id="next-button" class="focus:outline-none">
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -54,13 +60,13 @@
     </div>
     <div class="playlists">
       @foreach ($playlists as $playlist )
-      
+
       <div id="accordion-collapse-{{$playlist->id}}" data-accordion="collapse">
         <h2 id="accordion-collapse-heading-{{$playlist->id}}">
           <div type="button" class="flex items-center justify-between w-full font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
 
             <span>
-              <button class="p-3 hover:bg-green-500 group focus:outline-none">
+              <button class="p-3 hover:bg-green-500 group focus:outline-none" data-playlist="{{ json_encode($playlist) }}">
                 <svg class="w-4 h-4 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
@@ -105,7 +111,6 @@
   </div>
 
   <script>
-    
     document.addEventListener('DOMContentLoaded', function() {
       const playlists = <?php echo json_encode($playlists); ?>;
       console.log(playlists)
@@ -128,11 +133,12 @@
 
       function initPlayerInterface() {
         // Initialize player interface with the current track and playlist
-        document.getElementById('playlist-name').innerText = currentPlaylist.name;
+        /* document.getElementById('playlist-name').innerText = currentPlaylist.name;
         document.getElementById('track-title').innerText = currentTrack.title;
-        document.getElementById('audioPlayer').src = currentTrack.url;
-
+        document.getElementById('audioPlayer').src = currentTrack.url; */
+        updateplayer()
         // Add event listeners for play, pause, next, and previous buttons
+        document.getElementById('play-play-button').addEventListener('click', play);
         document.getElementById('play-pause-button').addEventListener('click', play);
         document.getElementById('previous-button').addEventListener('click', playPrevious);
         document.getElementById('next-button').addEventListener('click', playNext);
@@ -143,6 +149,19 @@
 
         // Update the playlist and track information
         document.getElementById('total-duration').innerText = formatTime(currentTrack.duration);
+        const playlistButtons = document.querySelectorAll('[data-playlist]');
+        playlistButtons.forEach(button => {
+          button.addEventListener('click', (event) => {
+            const playlist = JSON.parse(event.currentTarget.dataset.playlist);
+            setPlayingPlaylist(playlist);
+          });
+        });
+      }
+
+      function updateplayer() {
+        document.getElementById('playlist-name').innerText = currentPlaylist.name;
+        document.getElementById('track-title').innerText = currentTrack.title;
+        document.getElementById('audioPlayer').src = currentTrack.url;
       }
 
       function formatTime(seconds) {
@@ -155,26 +174,32 @@
       function play() {
         if (isPlaying) {
           audioPlayer.pause();
+          document.getElementById('play-pause-button').classList.replace('flex','hidden')
+          document.getElementById('play-play-button').classList.replace('hidden','flex');
         } else {
           audioPlayer.play();
+          document.getElementById('play-pause-button').classList.replace('hidden','flex');
+          document.getElementById('play-play-button').classList.replace('flex','hidden')
         }
         isPlaying = !isPlaying;
       }
 
       function playPrevious() {
+        updateplayer()
         trackIndex = (trackIndex - 1 + currentPlaylist.songs.length) % currentPlaylist.songs.length;
         currentTrack = currentPlaylist.songs[trackIndex];
         isPlaying = false;
         audioPlayer.src = currentTrack.url;
-        audioPlayer.play();
+        play()
       }
 
       function playNext() {
+        updateplayer()
         trackIndex = (trackIndex + 1) % currentPlaylist.songs.length;
         currentTrack = currentPlaylist.songs[trackIndex];
         isPlaying = false;
         audioPlayer.src = currentTrack.url;
-        audioPlayer.play();
+        play()
       }
 
       function setPlayingPlaylist(playlist) {
@@ -183,7 +208,8 @@
         currentTrack = currentPlaylist.songs[trackIndex];
         isPlaying = false;
         audioPlayer.src = currentTrack.url;
-        audioPlayer.play();
+        updateplayer()
+        //audioPlayer.play();
       }
 
       function updateProgressBar() {
