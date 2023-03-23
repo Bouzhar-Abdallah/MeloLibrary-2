@@ -30,7 +30,6 @@ return new class extends Migration
     public function down()
     {
         // To roll back the migration, we need to add the id column back to each table
-        // We'll assume the id column is an auto-incrementing primary key
         Schema::table('artist_song', function (Blueprint $table) {
             $table->id();
         });

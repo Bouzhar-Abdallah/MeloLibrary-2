@@ -22,7 +22,10 @@ class Aside extends Component
     {
         $this->user = Auth::user();
         //$this->playlists = $this->user->playlists();
-        $this->playlists = $this->user->playlists()->with('songs')->get();
+        $this->playlists = $this->user->playlists()
+        ->with('songs')
+        ->with('songs.artists', 'songs.bands', 'songs.genres')
+        ->get();
 
         if ($this->playlists->isEmpty()) {
             // Handle the case when there are no playlists

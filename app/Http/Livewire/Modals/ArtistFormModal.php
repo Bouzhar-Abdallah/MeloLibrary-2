@@ -40,10 +40,10 @@ class ArtistFormModal extends ModalComponent
 
     public function mount($id = '')
     {
-        if (!auth()->check() || auth()->user()->role->name !== 'admin') {
+        /* if (!auth()->check() || auth()->user()->role->name !== 'admin') {
             // Prevent the component from rendering
             return abort(403, 'Unauthorized action.');
-        }
+        } */
         if ($id == '') {
             $this->formTitle = 'create new artist';
             $this->form = 'create';
@@ -74,7 +74,7 @@ class ArtistFormModal extends ModalComponent
 
         $this->success = $this->artist->save();
         $this->closeModalWithEvents([
-            FeedbackModal::getName() => ['itemUpdated', ['success']],
+            //FeedbackModal::getName() => ['itemUpdated', ['success']],
             Search::getName() => 'itemUpdated',
             $this->emit('updateFeedback', ['success', 'artist created']),
         ]);
