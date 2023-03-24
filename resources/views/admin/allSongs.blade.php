@@ -8,20 +8,8 @@
 
 
   <main>
-    <div class="mx-5 mt-2">
-
-
-      <livewire:components.feedbacks />
-     
-    </div>
-    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-
-      <div>
-
-      </div>
-
-
-      
+    <div class=" mx-auto  sm:px-6 lg:px-8">
+      <x-songs-table :songs="$songs" />
     </div>
   </main>
 </div>
