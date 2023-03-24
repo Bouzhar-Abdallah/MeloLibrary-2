@@ -1,7 +1,8 @@
+@extends('layouts.user')
 
+@section('title', $title)
 
-<x-user-layout>
-  
-
-
-</x-user-layout>
+@section('content')
+    <h1>user landing page</h1>
+    
+@endsection
