@@ -61,7 +61,8 @@ class GenreFormModal extends ModalComponent
         $this->closeModalWithEvents([
             //FeedbackModal::getName() => ['itemUpdated', ['success']],
             Search::getName() => 'itemUpdated',
-            $this->emit('updateFeedback', ['success', 'genre created']),
+            //$this->emit('updateFeedback', ['success', 'genre created']),
+            $this->emit('flashMessage', 'genre created successfully', 'success'),
         ]);
 
         //redirect('dashboard')->with('success', 'genre created');
@@ -80,8 +81,8 @@ class GenreFormModal extends ModalComponent
             //FeedbackModal::getName() => ['itemUpdated', ['success']],
             Search::getName() => 'itemUpdated',
             //Feedbacks::getName() => ['message', ['success', 'genre updated']],
-            $this->emit('updateFeedback', ['success', 'genre updated']),
-
+            //$this->emit('updateFeedback', ['success', 'genre updated']),
+            $this->emit('flashMessage', 'genre updated successfully', 'success'),
         ]);
 
         //redirect('dashboard')->with('success', 'genre updated');

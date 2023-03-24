@@ -75,7 +75,7 @@ class ArtistFormModal extends ModalComponent
         $this->success = $this->artist->save();
         /* not working */
         $this->closeModalWithEvents([
-            $this->emit('flashMessage', 'Logged in successfully', 'success'),
+            $this->emit('flashMessage', 'artist created successfully', 'success'),
             //FeedbackModal::getName() => ['itemUpdated', ['success']],
             Search::getName() => 'itemUpdated',
             //$this->emit('updateFeedback', ['success', 'artist created']),
@@ -110,8 +110,8 @@ class ArtistFormModal extends ModalComponent
             //FeedbackModal::getName() => ['itemUpdated', ['success']],
             Search::getName() => 'itemUpdated',
             //Feedbacks::getName() => ['message', ['success', 'artist updated']],
-            $this->emit('flashMessage', 'Logged in successfully', 'success'),
-            $this->emit('updateFeedback', ['success', 'artist updated']),
+            $this->emit('flashMessage', 'artist updated successfully', 'success'),
+            
 
         ]);
 

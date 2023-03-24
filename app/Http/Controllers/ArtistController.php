@@ -56,6 +56,6 @@ class ArtistController extends Controller
     {
         $artist = artist::find($id);
         $artist->delete();
-        return redirect('/dashboard')->with('success', 'artist deleted ');
+        return redirect('/dashboard')->with('flashMessage', ['message' => 'artist deleted successfully', 'type' => 'success']);
     }
 }
