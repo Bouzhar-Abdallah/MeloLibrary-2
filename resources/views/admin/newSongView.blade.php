@@ -89,9 +89,12 @@
                 </div>
                 <div class="p-4 ">
                     <div class="space-y-6 sm:space-y-5">
-                        <x-select name="artist" label="Artist" />
-                        <x-select name="band" label="Band" />
-                        <x-select name="genre" label="Genre" />
+
+                        
+                        
+                        <livewire:components.select name="artist" label="Artist" />
+                        <livewire:components.select name="band" label="band" />
+                        <livewire:components.select name="genre" label="genre" />
                         <x-input-error :messages="$errors->get('genre')" class=" font-light text-sm" />
                         <x-select name="writer" label="writer" />
                         <x-select name="language" label="Language" />

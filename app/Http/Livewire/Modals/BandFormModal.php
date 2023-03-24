@@ -72,9 +72,10 @@ class BandFormModal extends ModalComponent
         $this->success = $this->band->save();
         $this->closeModalWithEvents([
             //FeedbackModal::getName() => ['itemUpdated', ['success']],
-            Search::getName() => 'itemUpdated',
+            //Search::getName() => 'itemUpdated',
             //$this->emit('updateFeedback', ['success', 'band created']),
             $this->emit('flashMessage', 'band created successfully', 'success'),
+            $this->emit('itemUpdated'),
         ]);
 
         //redirect('dashboard')->with('success', 'band created');
@@ -104,10 +105,11 @@ class BandFormModal extends ModalComponent
         
         $this->closeModalWithEvents([
             //FeedbackModal::getName() => ['itemUpdated', ['success']],
-            Search::getName() => 'itemUpdated',
+            //Search::getName() => 'itemUpdated',
             //Feedbacks::getName() => ['message', ['success', 'band updated']],
             //$this->emit('updateFeedback', ['success', 'band updated']),
             $this->emit('flashMessage', 'band updated successfully', 'success'),
+            $this->emit('itemUpdated'),
         ]);
 
         //redirect('dashboard')->with('success', 'band updated');

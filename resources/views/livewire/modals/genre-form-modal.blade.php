@@ -55,7 +55,7 @@
 
         <div class="">
             <x-input-label for="name" :value="__('name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" wire:model="name" required autocomplete="username" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" wire:model="name" required />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
 
         </div>

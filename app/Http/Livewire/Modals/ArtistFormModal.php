@@ -4,6 +4,7 @@ namespace App\Http\Livewire\modals;
 
 use App\Http\Livewire\Components\Feedbacks;
 use App\Http\Livewire\Components\Search as Search;
+use App\Http\Livewire\Components\Select as Select;
 use App\Models\artist;
 use LivewireUI\Modal\ModalComponent;
 use Livewire\WithFileUploads;
@@ -76,8 +77,10 @@ class ArtistFormModal extends ModalComponent
         /* not working */
         $this->closeModalWithEvents([
             $this->emit('flashMessage', 'artist created successfully', 'success'),
+            $this->emit('itemUpdated'),
             //FeedbackModal::getName() => ['itemUpdated', ['success']],
-            Search::getName() => 'itemUpdated',
+            /* Search::getName() => 'itemUpdated',
+            Select::getName() => 'itemUpdated', */
             //$this->emit('updateFeedback', ['success', 'artist created']),
         ]);
 
@@ -108,10 +111,10 @@ class ArtistFormModal extends ModalComponent
         
         $this->closeModalWithEvents([
             //FeedbackModal::getName() => ['itemUpdated', ['success']],
-            Search::getName() => 'itemUpdated',
+            //Search::getName() => 'itemUpdated',
             //Feedbacks::getName() => ['message', ['success', 'artist updated']],
             $this->emit('flashMessage', 'artist updated successfully', 'success'),
-            
+            $this->emit('itemUpdated'),
 
         ]);
 

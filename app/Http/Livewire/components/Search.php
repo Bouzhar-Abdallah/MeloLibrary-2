@@ -19,7 +19,6 @@ class Search extends Component
     public function mount($name)
     {
         $this->name = $name;
-        
     }
     public function render()
     {
