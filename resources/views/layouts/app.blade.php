@@ -11,7 +11,7 @@
             </header>
             @endif
             <x-admin_dashboard_nav />
-            @livewire('livewire-ui-modal')
+            
             
             {{ $slot }}
             

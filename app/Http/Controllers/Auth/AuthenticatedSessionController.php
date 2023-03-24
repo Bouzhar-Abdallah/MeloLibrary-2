@@ -42,8 +42,9 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-
-        return redirect('/')->with('success', 'logged out succesefully');;
+        
+        /* return redirect('/')->with('success', 'logged out succesefully');; */
+        return redirect('/')->with('flashMessage', ['message' => 'Created successfully', 'type' => 'success']);
     }
 
     /**

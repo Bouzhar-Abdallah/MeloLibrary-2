@@ -1,3 +1,5 @@
+<x-guest-layout>
+
 <div class="relative bg-gray-800 h-screen overflow-hidden">
   <div class="hidden sm:block sm:absolute sm:inset-0" aria-hidden="true">
     <svg class="absolute bottom-0 right-0 transform translate-x-1/2 mb-48 text-gray-700 lg:top-0 lg:mt-28 lg:mb-0 xl:transform-none xl:translate-x-0" width="364" height="384" viewBox="0 0 364 384" fill="none">
@@ -42,7 +44,7 @@
           <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"> Log in </a>
         </div> -->
 
-        
+        <!-- log in buttons -->
        <x-home_buttons />
       </nav>
       <!-- logged in  -->
@@ -227,3 +229,5 @@
     });
   });
 </script>
+       
+</x-guest-layout>   

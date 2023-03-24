@@ -30,11 +30,9 @@ Route::middleware(['auth', 'checkRole:admin'])->group(function () {
 
 /* public home route */
 Route::get('/', function () {
-    return view('guest');
-});
-Route::get('/test', function () {
-    return view('test');
-});
+    return view('guest.index');
+})->name('guest.index');
+
     
 
 Route::get('/dashboard', function () {
