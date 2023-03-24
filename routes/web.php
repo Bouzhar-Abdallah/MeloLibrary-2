@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SongController;
@@ -22,11 +23,6 @@ use App\Http\Middleware\UserMiddleware as UserMiddleware;
 |
 */
 
-use App\Http\Livewire\Modals\ArtistFormModal;
-
-Route::middleware(['auth', 'checkRole:admin'])->group(function () {
-    Route::get('/artist-form-modal', ArtistFormModal::class)->name('artist-form-modal');
-});
 
 /* public home route */
 Route::get('/', function () {
@@ -39,15 +35,13 @@ Route::get('/test', function () {
 
     
 
-Route::get('/dashboard', function () {
+/* Route::get('/dashboard', function () {
     return view('dashboard');
-})->name('dashboard');
+})->name('dashboard'); */
 
 
 
 Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
-Route::get('/admin/song/new', [SongController::class, 'index'])->name('admin.song');
-Route::post('/admin/song/save', [SongController::class, 'save'])->name('admin.song.save');
 Route::get('/user', [DashboardController::class, 'user'])->name('user');
 
 Route::get('/admin/update/artist/{id}', [ArtistController::class, 'update'])->name('admin.update.artist');
@@ -78,6 +72,9 @@ Route::group(['middleware'=>['auth',UserMiddleware::class]], function () {
     Route::get('/user', [User::class, 'index'])->name('user.index');
 });
 
+Route::get('/dashboard', [Admin::class, 'index'])->name('admin.index');
+Route::get('/admin/song/new', [Admin::class, 'createSong'])->name('admin.song.new');
+Route::post('/admin/song/save', [Admin::class, 'saveSong'])->name('admin.song.save');
 
 
 

@@ -15,7 +15,7 @@
             <x-admin_dashboard_nav />
             
             
-            {{ $slot }}
+            @yield('content')
             
         </div>
 <x-footer />
