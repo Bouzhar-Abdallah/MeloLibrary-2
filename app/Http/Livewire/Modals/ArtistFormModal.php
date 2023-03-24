@@ -73,11 +73,12 @@ class ArtistFormModal extends ModalComponent
         $this->artist->cover_id = $result->getPublicId();
 
         $this->success = $this->artist->save();
-        $this->emit('flashMessage', 'Logged in successfully', 'success');
+        /* not working */
         $this->closeModalWithEvents([
+            $this->emit('flashMessage', 'Logged in successfully', 'success'),
             //FeedbackModal::getName() => ['itemUpdated', ['success']],
             Search::getName() => 'itemUpdated',
-            $this->emit('updateFeedback', ['success', 'artist created']),
+            //$this->emit('updateFeedback', ['success', 'artist created']),
         ]);
 
         //redirect('dashboard')->with('success', 'Artist created');
@@ -109,6 +110,7 @@ class ArtistFormModal extends ModalComponent
             //FeedbackModal::getName() => ['itemUpdated', ['success']],
             Search::getName() => 'itemUpdated',
             //Feedbacks::getName() => ['message', ['success', 'artist updated']],
+            $this->emit('flashMessage', 'Logged in successfully', 'success'),
             $this->emit('updateFeedback', ['success', 'artist updated']),
 
         ]);

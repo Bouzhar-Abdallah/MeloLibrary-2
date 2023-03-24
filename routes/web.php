@@ -34,7 +34,7 @@ Route::get('/', function () {
 })->name('guest.index');
 
 Route::get('/test', function () {
-    return redirect('/')->with('flashMessage', ['message' => 'test', 'type' => 'success']);
+    return redirect('/dashboard')->with('flashMessage', ['message' => 'test', 'type' => 'failure']);
 })->name('test');
 
     
