@@ -1,38 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Livewire;
 
 use App\Models\song;
-use Illuminate\Http\Request;
+use Livewire\Component;
 
-class parentController extends Controller
+class AdminSongsTable extends Component
 {
-    public function guestIndex()
-    {
-        $title = 'welcome';
-        return view('guest.index',compact('title'));
-    }
-    public function userIndex()
-    {
-        $title = 'home';
-        return view('user.index',compact('title'));
-    }
-    public function adminIndex()
-    {
-        $title = 'dashboard';
-        return view(
-            'admin.index',
-            compact('title')
-        );
-    }
-    public function createSong(Request $request)
-    {
-        $title = 'create song';
-        return view(
-            'admin.newSongView',
-            compact('title')
-        );
-    }
+    public $songs;
     public function arrangeData($songs){
         
             foreach ($songs as $song) {
@@ -63,9 +38,15 @@ class parentController extends Controller
         
         return $songs;
     }
-    public function listSongs(){
+    public function mount(){
         
-        $title = 'all songs';
-        return view('admin.allSongs',compact('title'));
+        $songs = song::with('bands', 'genres', 'artists', 'writers')
+        ->withAvg('song_ratings', 'rating')
+        ->get();
+        $this->songs = $this->arrangeData($songs);
+    }
+    public function render()
+    {
+        return view('livewire.admin-songs-table');
     }
 }
