@@ -1,4 +1,5 @@
 <x-header />
+<livewire:components.flash-messages />
     <body class="font-sans antialiased h-full">
         <div class="min-h-screen bg-gray-100">
             <x-navigation />

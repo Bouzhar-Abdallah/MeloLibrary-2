@@ -33,6 +33,10 @@ Route::get('/', function () {
     return view('guest.index');
 })->name('guest.index');
 
+Route::get('/test', function () {
+    return redirect('/')->with('flashMessage', ['message' => 'test', 'type' => 'success']);
+})->name('test');
+
     
 
 Route::get('/dashboard', function () {

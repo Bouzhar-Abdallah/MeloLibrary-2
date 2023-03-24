@@ -1,4 +1,5 @@
 <x-header />
+<livewire:components.flash-messages />
 <div class="min-h-screen bg-gray-100">
 
   <body class="font-sans antialiased h-full overflow-hidden">

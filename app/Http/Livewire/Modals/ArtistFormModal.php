@@ -73,6 +73,7 @@ class ArtistFormModal extends ModalComponent
         $this->artist->cover_id = $result->getPublicId();
 
         $this->success = $this->artist->save();
+        $this->emit('flashMessage', 'Logged in successfully', 'success');
         $this->closeModalWithEvents([
             //FeedbackModal::getName() => ['itemUpdated', ['success']],
             Search::getName() => 'itemUpdated',
