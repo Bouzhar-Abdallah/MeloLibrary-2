@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\Admin\songs as adminSongs;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SongController;
@@ -24,11 +25,9 @@ use App\Http\Middleware\UserMiddleware as UserMiddleware;
 |
 */
 
-
+Route::get('/', [parentController::class, 'guestIndex'])->name('guest.index');
 /* public home route */
-Route::get('/', function () {
-    return view('guest.index');
-})->name('guest.index');
+
 
 Route::get('/test', function () {
     return redirect('/dashboard')->with('flashMessage', ['message' => 'test', 'type' => 'failure']);
@@ -74,8 +73,8 @@ Route::group(['middleware'=>['auth',UserMiddleware::class]], function () {
 });
 
 Route::get('/dashboard', [parentController::class, 'adminIndex'])->name('admin.index');
-Route::get('/admin/song/new', [Admin::class, 'createSong'])->name('admin.song.new');
-Route::post('/admin/song/save', [Admin::class, 'saveSong'])->name('admin.song.save');
+Route::get('/admin/song/new', [parentController::class, 'createSong'])->name('admin.song.new');
+Route::post('/admin/song/save', [adminSongs::class, 'saveSong'])->name('admin.song.save');
 
 
 
