@@ -6,8 +6,12 @@
         <div class="max-w-xl bg-white shadow-lg w-full">
           <div class="relative h-20">
             <div class="p-2 inset-0 flex flex-col justify-end bg-indigo-500 to-gray-900 backdrop backdrop-blur-5 text-white">
-              <h3 id="playlist-name" class="font-bold"></h3>
-              <span id="track-title" class="opacity-70"></span>
+              <h3  class=" text-center capitalize">playlist : <span class="font-bold" id="playlist-name"></span></h3>
+              <div class="">
+                playing :
+                <span id="track-title" class="opacity-70"></span>
+
+              </div>
             </div>
           </div>
           <div>
@@ -35,7 +39,7 @@
                 <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
                 </svg>
-                
+
               </button>
               <button id="next-button" class="focus:outline-none">
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -59,19 +63,26 @@
       </div>
     </div>
     <div class="playlists">
+      <div class="p-2 inset-0 flex flex-col justify-end bg-indigo-500 backdrop backdrop-blur-5 text-white">
+        <h1 class="text-center font-bold">playlists</h1>
+      </div>
       @foreach ($playlists as $playlist )
 
       <div id="accordion-collapse-{{$playlist->id}}" data-accordion="collapse">
         <h2 id="accordion-collapse-heading-{{$playlist->id}}">
-          <div type="button" class="flex items-center justify-between w-full font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
+          <div type="button" class="flex bg-gray-100 items-center justify-between w-full font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
 
-            <span>
-              <button class="p-3 hover:bg-green-500 group focus:outline-none" data-playlist="{{ json_encode($playlist) }}">
-                <svg class="w-4 h-4 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            <div class="flex items-center ">
+              <button class="relative p-3 hover:bg-green-500 group focus:outline-none" data-playlist="{{ json_encode($playlist) }}">
+
+                <svg class="w-4 h-4 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
                 </svg>
+
+                <span class="text-xs  border rounded-full absolute right-1 bottom-0 px-1 bg-white">{{$playlist->tracks_count}}</span>
               </button>
-              {{$playlist->name}} </span>
+              <span class=" text-lg">{{$playlist->name}}</span>
+            </div>
 
             <button data-accordion-target="#accordion-collapse-body-{{$playlist->id}}" aria-expanded="true" aria-controls="accordion-collapse-body-{{$playlist->id}}">
               <svg data-accordion-icon class="w-6 h-6 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -87,7 +98,8 @@
               <li class="flex items-center space-x-3 hover:bg-gray-100">
 
                 <div class="flex-1 p-3">
-                  Artist - {{$song->title}}
+                  <h1 class="font-bold capitalize">{{$song->title}}</h1>
+                  <h1 class="text-gray-700 font-extralight capitalize">{{implode(' ft ',$song->song_owners)}}</h1>
                 </div>
                 <div class="text-xs text-gray-400 p-3">
                   {{$song->duration}}
@@ -148,7 +160,7 @@
         audioPlayer.addEventListener('timeupdate', updateCurrentTime);
 
         // Update the playlist and track information
-        document.getElementById('total-duration').innerText = formatTime(currentTrack.duration);
+        
         const playlistButtons = document.querySelectorAll('[data-playlist]');
         playlistButtons.forEach(button => {
           button.addEventListener('click', (event) => {
@@ -157,8 +169,9 @@
           });
         });
       }
-
+      
       function updateplayer() {
+        document.getElementById('total-duration').innerText = formatTime(currentTrack.duration);
         document.getElementById('playlist-name').innerText = currentPlaylist.name;
         document.getElementById('track-title').innerText = currentTrack.title;
         document.getElementById('audioPlayer').src = currentTrack.url;
@@ -174,31 +187,31 @@
       function play() {
         if (isPlaying) {
           audioPlayer.pause();
-          document.getElementById('play-pause-button').classList.replace('flex','hidden')
-          document.getElementById('play-play-button').classList.replace('hidden','flex');
+          document.getElementById('play-pause-button').classList.replace('flex', 'hidden')
+          document.getElementById('play-play-button').classList.replace('hidden', 'flex');
         } else {
           audioPlayer.play();
-          document.getElementById('play-pause-button').classList.replace('hidden','flex');
-          document.getElementById('play-play-button').classList.replace('flex','hidden')
+          document.getElementById('play-pause-button').classList.replace('hidden', 'flex');
+          document.getElementById('play-play-button').classList.replace('flex', 'hidden')
         }
         isPlaying = !isPlaying;
       }
 
       function playPrevious() {
-        updateplayer()
         trackIndex = (trackIndex - 1 + currentPlaylist.songs.length) % currentPlaylist.songs.length;
         currentTrack = currentPlaylist.songs[trackIndex];
         isPlaying = false;
         audioPlayer.src = currentTrack.url;
+        updateplayer()
         play()
       }
 
       function playNext() {
-        updateplayer()
         trackIndex = (trackIndex + 1) % currentPlaylist.songs.length;
         currentTrack = currentPlaylist.songs[trackIndex];
         isPlaying = false;
         audioPlayer.src = currentTrack.url;
+        updateplayer()
         play()
       }
 
