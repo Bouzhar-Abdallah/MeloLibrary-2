@@ -96,8 +96,9 @@
                         <livewire:components.select name="band" label="band" />
                         <livewire:components.select name="genre" label="genre" />
                         <x-input-error :messages="$errors->get('genre')" class=" font-light text-sm" />
-                        <x-select name="writer" label="writer" />
-                        <x-select name="language" label="Language" />
+                        <livewire:components.select name="writer" label="writer" />
+                        <livewire:components.select name="language" label="language" />
+                        
                     </div>
                 </div>
 
