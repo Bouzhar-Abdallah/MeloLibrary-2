@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\song;
 use Illuminate\Http\Request;
 use Cloudinary;
 
@@ -19,24 +20,29 @@ class songs extends Controller
     {
         $request->validate($this->rules);
 
-        $file = $request->file('cover');
-        $uploadResult =  Cloudinary::UploadApi()->upload($file->getPathname());
-        $imageUrl = $uploadResult['secure_url'];
+        $song = new song;
 
-
+        $cover = $request->file('cover');
+        $upload_cover_Result =  $cover->storeOnCloudinary();
+        $cover_Url = $upload_cover_Result->getSecurePath();
+        
         $clip = $request->file('clip');
+        $upload_clip_Result =  $clip->storeOnCloudinary();
+        $clip_Url = $upload_clip_Result->getSecurePath();
+
+
+        /* $clip = $request->file('clip');
         $uploadClipResult = Cloudinary::uploadApi()->upload($clip->getPathname(), [
             "resource_type" => "auto",
-        ]);
-        $clipUrl = $uploadClipResult['secure_url'];
+        ]); */
 
         $audio = new \wapmorgan\Mp3Info\Mp3Info($clip, true);
 
 
         $song = Song::create([
             "title" => $request->title,
-            "url" => $clipUrl,
-            "cover_url" => $imageUrl,
+            "url" => $clip_Url,
+            "cover_url" => $cover_Url,
             "duration" => $audio->duration,
             "release_date" => $request->release_date,
             "lyrics" => $request->lyrics
