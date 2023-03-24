@@ -32,4 +32,8 @@ class parentController extends Controller
             compact('title')
         );
     }
+    public function listSongs(){
+        $title = 'all songs';
+        return view('admin.allSongs',compact('title'));
+    }
 }

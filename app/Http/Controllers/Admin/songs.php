@@ -61,4 +61,5 @@ class songs extends Controller
 
         return redirect('dashboard')->with('flashMessage', ['message' => 'song added successfully', 'type' => 'success']);
     }
+    
 }

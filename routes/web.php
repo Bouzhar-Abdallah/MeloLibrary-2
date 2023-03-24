@@ -73,6 +73,7 @@ Route::group(['middleware'=>['auth',UserMiddleware::class]], function () {
 });
 
 Route::get('/dashboard', [parentController::class, 'adminIndex'])->name('admin.index');
+Route::get('/admin/songs/list', [parentController::class, 'listSongs'])->name('admin.songs.list');
 Route::get('/admin/song/new', [parentController::class, 'createSong'])->name('admin.song.new');
 Route::post('/admin/song/save', [adminSongs::class, 'saveSong'])->name('admin.song.save');
 
