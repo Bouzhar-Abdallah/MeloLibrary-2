@@ -34,10 +34,6 @@ class SongController extends Controller
         );
     }
 
-    public function update($id){
-        
-        dd($id);
-    }
     public function save(Request $request)
     {
         $file = $request->file('cover');

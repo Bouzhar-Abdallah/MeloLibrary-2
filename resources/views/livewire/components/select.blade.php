@@ -13,9 +13,12 @@ flex-1 block w-full focus:ring-indigo-500 rounded-md focus:border-indigo-500 min
         @if ($options)
 
         @foreach ($options as $value)
-        <option value="{{ $value->id }}">{{ $value->name }}</option>
+        <<option value="{{ $value->id }}" @if(in_array($value->id, array_column($selected, 'id'), true)) selected @endif>{{ $value->name }}</option>
+
         @endforeach
         @endif
+        
     </select>
 
-</div>
+    </div>
+

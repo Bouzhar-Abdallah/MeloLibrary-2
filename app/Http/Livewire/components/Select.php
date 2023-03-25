@@ -13,10 +13,13 @@ class Select extends Component
     public $name;
     public $label;
     public $options;
+    public $selected;
     public $listeners = ['itemUpdated' => 'render'];
-    public function mount($name, $label){
+    public function mount($name, $label, $selected = []){
         $this->name = $name;
         $this->label = $label;
+        $this->selected = $selected;
+        
     }
     public function render()
     {

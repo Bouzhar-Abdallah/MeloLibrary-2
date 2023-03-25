@@ -40,30 +40,29 @@ class SongsTable extends Component
 
         return $songs;
     }
+    public function fetchData(){
+        $this->songs = $this->arrangeData(song::where(function($query) {
+            $query->where('title', 'like', '%' . $this->inputfield . '%')
+                  ->orWhere('release_date', 'like', '%' . $this->inputfield . '%')
+                  ->orWhere('lyrics', 'like', '%' . $this->inputfield . '%');
+        })
+        ->with('bands', 'genres', 'artists', 'writers')
+        ->withAvg('song_ratings', 'rating')
+        ->get());
+    }
+    public function deleteSong($id){
+        $song = song::find($id);
+        $song->delete();
+        $this->fetchData();
+        $this->emit('flashMessage', 'song record deleted', 'success');
+    }
     public function updatedInputfield()
     {
-        $this->songs = $this->arrangeData(song::where(function($query) {
-        $query->where('title', 'like', '%' . $this->inputfield . '%')
-              ->orWhere('release_date', 'like', '%' . $this->inputfield . '%')
-              ->orWhere('lyrics', 'like', '%' . $this->inputfield . '%');
-    })
-    ->with('bands', 'genres', 'artists', 'writers')
-    ->withAvg('song_ratings', 'rating')
-    ->get());
+        $this->fetchData();
     }
     public function mount()
     {
-
-        $this->songs = $this->arrangeData(song::where(function($query) {
-        $query->where('title', 'like', '%' . $this->inputfield . '%')
-              ->orWhere('release_date', 'like', '%' . $this->inputfield . '%')
-              ->orWhere('lyrics', 'like', '%' . $this->inputfield . '%');
-    })
-    ->with('bands', 'genres', 'artists', 'writers')
-    ->withAvg('song_ratings', 'rating')
-    ->get());
-        //dd(['songs' =>$this->songs, 'search' => $this->search]);
-        //dd($this->songs);
+        $this->fetchData();
     }
     public function render()
     {

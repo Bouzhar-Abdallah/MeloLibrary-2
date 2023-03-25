@@ -33,6 +33,22 @@ class parentController extends Controller
             compact('title')
         );
     }
+    public function updateSong($id)
+    {
+        $song = Song::with('bands', 'genres', 'artists', 'writers','languages')
+                ->find($id);
+                $genres = $song->genres->toArray();
+                $bands = $song->bands->toArray();
+                $artists = $song->artists->toArray();
+                $writers = $song->writers->toArray();
+                $languages = $song->languages->toArray();
+                
+        $title = 'update song';
+        return view(
+            'admin.editSongView',
+            compact('title','song','genres','bands','artists','writers','languages')
+        );
+    }
     public function arrangeData($songs){
         
             foreach ($songs as $song) {

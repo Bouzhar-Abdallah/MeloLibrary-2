@@ -15,6 +15,10 @@ class songs extends Controller
         'clip' => 'required|file|mimes:mp3,wav,ogg,m4a|max:5048',
         'genre' => 'required|array',
     ];
+    protected $rules_update = [
+        'title' => 'required',
+        'genre' => 'required|array',
+    ];
 
     public function saveSong(Request $request)
     {
@@ -25,7 +29,7 @@ class songs extends Controller
         $cover = $request->file('cover');
         $upload_cover_Result =  $cover->storeOnCloudinary();
         $cover_Url = $upload_cover_Result->getSecurePath();
-        
+
         $clip = $request->file('clip');
         $upload_clip_Result =  $clip->storeOnCloudinary();
         $clip_Url = $upload_clip_Result->getSecurePath();
@@ -57,9 +61,56 @@ class songs extends Controller
         $selectedGenreIds = $request->input('genre', []);
         $song->genres()->attach($selectedGenreIds);
 
+        $selectedLanguageIds = $request->input('language', []);
+        $song->languages()->attach($selectedLanguageIds);
 
+        $selectedWriterIds = $request->input('writer', []);
+        $song->writers()->attach($selectedWriterIds);
 
         return redirect('dashboard')->with('flashMessage', ['message' => 'song added successfully', 'type' => 'success']);
     }
-    
+
+    public function saveSongUpdated(Request $request, $id)
+    {
+
+        $request->validate($this->rules_update);
+
+        $song = Song::find($id);
+
+        if ($request->file('cover')) {
+
+            $cover = $request->file('cover');
+            $upload_cover_Result =  $cover->storeOnCloudinary();
+            $cover_Url = $upload_cover_Result->getSecurePath();
+            $song->cover_url = $cover_Url;
+        }
+        if ($request->file('clip')) {
+            $clip = $request->file('clip');
+            $upload_clip_Result =  $clip->storeOnCloudinary();
+            $clip_Url = $upload_clip_Result->getSecurePath();
+            $song->url = $clip_Url;
+            $audio = new \wapmorgan\Mp3Info\Mp3Info($clip, true);
+            $song->duration = $audio->duration;
+        }
+
+
+        $song->title = $request->title;
+        $song->release_date = $request->release_date;
+        $song->lyrics = $request->lyrics;
+
+        $song->save();
+
+        $selectedArtistIds = $request->input('artist', []);
+        $song->artists()->detach();
+        $song->artists()->attach($selectedArtistIds);
+
+        $selectedBandIds = $request->input('band', []);
+        $song->bands()->detach();
+        $song->bands()->attach($selectedBandIds);
+
+        $selectedGenreIds = $request->input('genre', []);
+        $song->genres()->detach();
+        $song->genres()->attach($selectedGenreIds);
+        return redirect('admin/songs/list')->with('flashMessage', ['message' => 'song updated successfully', 'type' => 'success']);
+    }
 }
