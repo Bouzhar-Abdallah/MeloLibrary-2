@@ -14,7 +14,7 @@
 
 
     </div>
-    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div class=" mx-auto py-2 sm:px-4 lg:px-14">
       <!-- stats -->
 
 
