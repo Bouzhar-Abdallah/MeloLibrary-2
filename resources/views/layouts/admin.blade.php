@@ -1,4 +1,6 @@
 <x-header />
+<livewire:components.flash-messages />
+
     <body class="font-sans antialiased h-full">
         <div class="min-h-screen bg-gray-100">
             <x-navigation />
@@ -11,9 +13,9 @@
             </header>
             @endif
             <x-admin_dashboard_nav />
-            @livewire('livewire-ui-modal')
             
-            {{ $slot }}
+            
+            @yield('content')
             
         </div>
 <x-footer />

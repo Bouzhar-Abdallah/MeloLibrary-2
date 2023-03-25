@@ -1,35 +1,26 @@
 <?php
 
-namespace App\View\Components;
-
+namespace App\Http\Livewire\Components;
 use App\Models\artist;
 use App\Models\band;
 use App\Models\genre;
 use App\Models\Language;
 use App\Models\Writer;
-use Illuminate\View\Component;
+use Livewire\Component;
 
 class Select extends Component
 {
     public $name;
     public $label;
     public $options;
-
-    public function __construct($name, $label)
-    {
+    public $listeners = ['itemUpdated' => 'render'];
+    public function mount($name, $label){
         $this->name = $name;
         $this->label = $label;
-     /*    if ($name == 'artist') {
-            
-            $this->options = artist::all();
-            
-        }elseif ($name == 'genre') {
-            $this->options = genre::all();
-        }elseif ($name == 'band') {
-            $this->options = band::all();
-            
-        } */
-        switch ($name) {
+    }
+    public function render()
+    {
+        switch ($this->name) {
             case 'artist':
                 $this->options = artist::all();
                 break;
@@ -48,12 +39,7 @@ class Select extends Component
             default:
                 $this->options = null;
         }
+        return view('livewire.components.select');
         
-    }
-
-    public function render()
-    {
-        /*  {{ dd($options) }} */
-        return view('components.select');
     }
 }

@@ -76,8 +76,7 @@
             @elseif ($cover_url)
             <img class="h-24 w-24" src="{{ $cover_url }}" alt="">
             @endif
-            <!-- <div class="h-24 w-24 ">
-      </div> -->
+          
             <div class="flex flex-col gap-5 ">
                 <input type="file" name="cover" wire:model="cover" id="">
                 <x-input-error :messages="$errors->get('cover')" class="mt-2" />

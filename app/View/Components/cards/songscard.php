@@ -20,7 +20,10 @@ class songscard extends Component
         
         $this->total_songs = song::all()->count();
         $this->new_songs = song::where('created_at', '>=', now()->subDays(30))->count();
-        $this->pourcentage = ($this->new_songs / $this->total_songs) * 100;
+        if ($this->total_songs) {
+            
+            $this->pourcentage = ($this->new_songs / $this->total_songs) * 100;
+        }
         $this->pourcentage = number_format((float)$this->pourcentage, 2, '.', '');
     }
 

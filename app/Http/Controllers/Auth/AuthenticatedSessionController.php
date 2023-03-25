@@ -29,7 +29,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended($this->redirectTo())->with('success', 'logged in succesefully');
+        //return redirect()->intended($this->redirectTo())->with('success', 'logged in succesefully');
+        return redirect()->intended($this->redirectTo())->with('flashMessage', ['message' => 'logged in successfully', 'type' => 'success']);
     }
 
     /**
@@ -42,8 +43,9 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-
-        return redirect('/')->with('success', 'logged out succesefully');;
+        
+        /* return redirect('/')->with('success', 'logged out succesefully');; */
+        return redirect('/')->with('flashMessage', ['message' => 'logged out successfully', 'type' => 'success']);
     }
 
     /**

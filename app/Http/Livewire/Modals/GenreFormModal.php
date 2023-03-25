@@ -4,6 +4,7 @@ namespace App\Http\Livewire\modals;
 
 use App\Http\Livewire\Components\Feedbacks as Feedbacks;
 use App\Http\Livewire\Components\Search as Search;
+use App\Http\Livewire\Components\Select as Select;
 use App\Models\genre;
 use LivewireUI\Modal\ModalComponent;
 use Livewire\WithFileUploads;
@@ -60,8 +61,11 @@ class GenreFormModal extends ModalComponent
         $this->success = $this->genre->save();
         $this->closeModalWithEvents([
             //FeedbackModal::getName() => ['itemUpdated', ['success']],
-            Search::getName() => 'itemUpdated',
-            $this->emit('updateFeedback', ['success', 'genre created']),
+            //Search::getName() => 'itemUpdated',
+            //$this->emit('updateFeedback', ['success', 'genre created']),
+            $this->emit('flashMessage', 'genre created successfully', 'success'),
+            $this->emit('itemUpdated'),
+            //Select::getName() => 'itemUpdated',
         ]);
 
         //redirect('dashboard')->with('success', 'genre created');
@@ -78,10 +82,13 @@ class GenreFormModal extends ModalComponent
         
         $this->closeModalWithEvents([
             //FeedbackModal::getName() => ['itemUpdated', ['success']],
-            Search::getName() => 'itemUpdated',
-            //Feedbacks::getName() => ['message', ['success', 'genre updated']],
+            /* Search::getName() => 'itemUpdated',
+            Feedbacks::getName() => ['message', ['success', 'genre updated']],
             $this->emit('updateFeedback', ['success', 'genre updated']),
-
+            Select::getName() => 'itemUpdated', */
+            
+            $this->emit('flashMessage', 'genre updated successfully', 'success'),
+            $this->emit('itemUpdated'),
         ]);
 
         //redirect('dashboard')->with('success', 'genre updated');
