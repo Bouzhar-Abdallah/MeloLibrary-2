@@ -9,7 +9,7 @@
 
   <main>
     <div class=" mx-auto  sm:px-6 lg:px-8">
-      <livewire:components.songs-table />
+      <livewire:admin.songs-table />
       
     </div>
   </main>

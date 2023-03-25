@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\components;
+namespace App\Http\Livewire\admin;
 
 use App\Models\artist;
 use App\Models\band;
@@ -46,19 +46,19 @@ class Search extends Component
         switch ($this->name) {
             case 'artist':
                 $this->count = artist::count();
-                return view('livewire.search', [
+                return view('livewire.admin.search', [
                     'users' => artist::where('name', 'like', '%' . $this->search . '%')->withCount('songs')->get()
                 ]);
                 break;
             case 'genre':
                 $this->count = genre::count();
-                return view('livewire.search', [
+                return view('livewire.admin.search', [
                     'users' => genre::where('name', 'like', '%' . $this->search . '%')->withCount('songs')->get()
                 ]);
                 break;
             case 'band':
                 $this->count = band::count();
-                return view('livewire.search', [
+                return view('livewire.admin.search', [
                     'users' => band::where('name', 'like', '%' . $this->search . '%')->withCount('songs')->get()
                 ]);
                 break;

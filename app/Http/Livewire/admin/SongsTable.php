@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Components;
+namespace App\Http\Livewire\admin;
 
 use App\Models\song;
 use Livewire\Component;
@@ -66,7 +66,7 @@ class SongsTable extends Component
     }
     public function render()
     {
-        return view('livewire.components.songs-table', ['songs' => $this->arrangeData(song::where(function($query) {
+        return view('livewire.admin.songs-table', ['songs' => $this->arrangeData(song::where(function($query) {
         $query->where('title', 'like', '%' . $this->inputfield . '%')
               ->orWhere('release_date', 'like', '%' . $this->inputfield . '%')
               ->orWhere('lyrics', 'like', '%' . $this->inputfield . '%');

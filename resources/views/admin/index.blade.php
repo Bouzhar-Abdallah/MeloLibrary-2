@@ -22,9 +22,9 @@
       <!-- lists -->
       <!-- <button onclick="Livewire.emit('openModal', 'feedback-modal')">Open Modal</button> -->
       <dl class="mt-5 border border-gray-300 grid grid-cols-1 rounded-lg bg-white overflow-hidden shadow divide-y divide-gray-200 lg:grid-cols-3 md:grid-cols-2 md:divide-y-0 md:divide-x">
-        <livewire:components.search name="artist" />
-        <livewire:components.search name="band" />
-        <livewire:components.search name="genre" />
+        <livewire:admin.search name="artist" />
+        <livewire:admin.search name="band" />
+        <livewire:admin.search name="genre" />
 
 
       </dl>
