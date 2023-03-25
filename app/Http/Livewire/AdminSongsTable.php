@@ -7,7 +7,9 @@ use Livewire\Component;
 
 class AdminSongsTable extends Component
 {
-    public $songs;
+    public $songs = [];
+    public $search = '';
+    
     public function arrangeData($songs){
         
             foreach ($songs as $song) {
@@ -38,15 +40,27 @@ class AdminSongsTable extends Component
         
         return $songs;
     }
+
     public function mount(){
-        
-        $songs = song::with('bands', 'genres', 'artists', 'writers')
+        /*  dd( $this->arrangeData(
+            
+            song::where('title', 'like', '%'.$this->search.'%')
+            ->with('bands', 'genres', 'artists', 'writers')
+            ->withAvg('song_ratings', 'rating')
+            ->get()
+            
+        )); */
+        $songs =song::where('title', 'like', '%'.$this->search.'%')
+        ->with('bands', 'genres', 'artists', 'writers')
         ->withAvg('song_ratings', 'rating')
         ->get();
         $this->songs = $this->arrangeData($songs);
+        //dd(['songs' =>$this->songs, 'search' => $this->search]);
+        //dd($this->songs);
     }
     public function render()
     {
+        
         return view('livewire.admin-songs-table');
     }
 }
