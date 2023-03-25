@@ -18,7 +18,8 @@ class Aside extends Component
         //dd($this->playing_playlist->name);
 
     }
-    public function arrangeData($playlists){
+    public function arrangeData($playlists)
+    {
         foreach ($playlists as $playlist) {
             foreach ($playlist->songs as $song) {
                 $song_owners = [];
@@ -57,10 +58,20 @@ class Aside extends Component
         ->with('songs.artists', 'songs.bands', 'songs.genres')
         ->get(); */
         $playlists = $this->user->playlists()
-            ->withCount(['songs as tracks_count'])
-            ->with('songs')
-            ->with('songs.bands', 'songs.genres', 'songs.artists', 'songs.writers')
+            ->withCount(['songs as tracks_count' => function ($query) {
+                $query->where('archive', '!=', true);
+            }])
+            ->with([
+                'songs' => function ($query) {
+                    $query->where('archive', '!=', true);
+                },
+                'songs.bands', 'songs.genres', 'songs.artists', 'songs.writers'
+            ])
+            ->whereHas('songs', function ($query) {
+                $query->where('archive', '!=', true);
+            })
             ->get();
+
         $this->playlists = $this->arrangeData($playlists);
         //dd($this->playlists[0]->songs);
         if ($this->playlists->isEmpty()) {
