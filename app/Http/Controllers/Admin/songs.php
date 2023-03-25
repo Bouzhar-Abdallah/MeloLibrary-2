@@ -11,11 +11,13 @@ class songs extends Controller
 {
     protected $rules = [
         'title' => 'required',
+        'lyrics' => 'required',
         'cover' => 'required|file|mimes:png,jpg,jpeg,webp',
         'clip' => 'required|file|mimes:mp3,wav,ogg,m4a|max:5048',
         'genre' => 'required|array',
     ];
     protected $rules_update = [
+        'lyrics' => 'required',
         'title' => 'required',
         'genre' => 'required|array',
     ];
@@ -103,6 +105,14 @@ class songs extends Controller
         $selectedArtistIds = $request->input('artist', []);
         $song->artists()->detach();
         $song->artists()->attach($selectedArtistIds);
+
+        $selectedWritersIds = $request->input('writer', []);
+        $song->writers()->detach();
+        $song->writers()->attach($selectedWritersIds);
+        
+        $selectedlanguagesIds = $request->input('language', []);
+        $song->languages()->detach();
+        $song->languages()->attach($selectedlanguagesIds);
 
         $selectedBandIds = $request->input('band', []);
         $song->bands()->detach();
