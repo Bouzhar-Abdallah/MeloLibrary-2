@@ -1,23 +1,30 @@
 <div class="px-4 sm:px-6 lg:px-8">
-    <div class="">
-        <input type="text" wire:model="inputfield" placeholder="search">
+<!--  -->
 
+<div class="mt-4">   
+    <label for="default-search" class="mt-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+    <div class="relative">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </div>
+        <input wire:model="inputfield" type="search" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search titles, lyrics..." required>
     </div>
-    <div class="sm:flex sm:items-center">
+</div >
 
 
-    </div>
-    <div class="mt-8 flex flex-col">
+<!--  -->
+  
+    <div class="mt-4 flex flex-col">
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                     <table class="min-w-full divide-y divide-gray-300">
-                        <thead class="bg-gray-50">
+                        <thead class="bg-gray-50 capitalize">
                             <tr>
-                                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Title</th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Role</th>
+                                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">track</th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">genres</th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">release date</th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ratings</th>
                                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                     actions
                                 </th>
@@ -39,19 +46,19 @@
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    {{implode(' - ',$song->genre_names)}}
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    {{$song->release_date}}
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     <div class="flex">
-
+                                        
                                         <x-normal-ratings :rating="(round($song->song_ratings_avg_rating, 1))" />
                                         <div class="ml-2">
                                             {{ round($song->song_ratings_avg_rating, 1) }}
                                         </div>
                                     </div>
-                                </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    {{implode(' - ',$song->genre_names)}}
-                                </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    {{$song->release_date}}
                                 </td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-1 text-right text-sm font-medium sm:pr-1">
                                     <div class="flex ml-auto gap-2">
@@ -67,6 +74,7 @@
                                             </svg>
 
                                         </a>
+                                        <x-song-tooltip :song="$song"/>
                                     </div>
                                 </td>
                             </tr>
