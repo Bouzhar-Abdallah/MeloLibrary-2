@@ -1,7 +1,6 @@
 <div class="px-4 sm:px-6 lg:px-8">
     <div class="">
-        <input type="text" wire:model="inputfield">
-        {{$inputfield}}
+        <input type="text" wire:model="inputfield" placeholder="search">
 
     </div>
     <div class="sm:flex sm:items-center">
@@ -40,9 +39,12 @@
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    <x-normal-ratings :rating="(round($song->song_ratings_avg_rating, 1))" />
-                                    <div class="ml-2">
-                                        {{ round($song->song_ratings_avg_rating, 1) }}
+                                    <div class="flex">
+
+                                        <x-normal-ratings :rating="(round($song->song_ratings_avg_rating, 1))" />
+                                        <div class="ml-2">
+                                            {{ round($song->song_ratings_avg_rating, 1) }}
+                                        </div>
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -51,8 +53,8 @@
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     {{$song->release_date}}
                                 </td>
-                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                    <div class="flex ml-auto">
+                                <td class="relative whitespace-nowrap py-4 pl-3 pr-1 text-right text-sm font-medium sm:pr-1">
+                                    <div class="flex ml-auto gap-2">
 
                                         <a href="#" class="text-indigo-600 hover:text-indigo-900">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

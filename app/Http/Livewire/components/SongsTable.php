@@ -42,26 +42,62 @@ class SongsTable extends Component
     }
     public function updatedInputfield()
     {
-        $this->songs = $this->arrangeData(song::where('title', 'like', '%' . $this->inputfield . '%')
-            ->with('bands', 'genres', 'artists', 'writers')
-            ->withAvg('song_ratings', 'rating')
-            ->get());
+        $this->songs = $this->arrangeData(song::where(function($query) {
+        $query->where('title', 'like', '%' . $this->inputfield . '%')
+              ->orWhere('release_date', 'like', '%' . $this->inputfield . '%')
+              ->orWhere('lyrics', 'like', '%' . $this->inputfield . '%');
+    })
+    ->with('bands', 'genres', 'artists', 'writers')
+    ->withAvg('song_ratings', 'rating')
+    ->get());
     }
     public function mount()
     {
 
-        $this->songs = $this->arrangeData(song::where('title', 'like', '%' . $this->inputfield . '%')
-            ->with('bands', 'genres', 'artists', 'writers')
-            ->withAvg('song_ratings', 'rating')
-            ->get());
+        $this->songs = $this->arrangeData(song::where(function($query) {
+        $query->where('title', 'like', '%' . $this->inputfield . '%')
+              ->orWhere('release_date', 'like', '%' . $this->inputfield . '%')
+              ->orWhere('lyrics', 'like', '%' . $this->inputfield . '%');
+    })
+    ->with('bands', 'genres', 'artists', 'writers')
+    ->withAvg('song_ratings', 'rating')
+    ->get());
         //dd(['songs' =>$this->songs, 'search' => $this->search]);
         //dd($this->songs);
     }
     public function render()
     {
-        return view('livewire.components.songs-table', ['songs' => $this->arrangeData(song::where('title', 'like', '%' . $this->inputfield . '%')
-            ->with('bands', 'genres', 'artists', 'writers')
-            ->withAvg('song_ratings', 'rating')
-            ->get())]);
+        return view('livewire.components.songs-table', ['songs' => $this->arrangeData(song::where(function($query) {
+        $query->where('title', 'like', '%' . $this->inputfield . '%')
+              ->orWhere('release_date', 'like', '%' . $this->inputfield . '%')
+              ->orWhere('lyrics', 'like', '%' . $this->inputfield . '%');
+    })
+    ->with('bands', 'genres', 'artists', 'writers')
+    ->withAvg('song_ratings', 'rating')
+    ->get())]);
     }
 }
+
+/* 
+to use relations in search
+song::where(function($query) {
+        $query->where('title', 'like', '%' . $this->inputfield . '%')
+              ->orWhere('release_date', 'like', '%' . $this->inputfield . '%')
+              ->orWhere('lyrics', 'like', '%' . $this->inputfield . '%');
+    })
+    ->whereHas('bands', function($query) {
+        $query->where('name', 'like', '%' . $this->inputfield . '%');
+    })
+    ->orWhereHas('genres', function($query) {
+        $query->where('name', 'like', '%' . $this->inputfield . '%');
+    })
+    ->orWhereHas('artists', function($query) {
+        $query->where('name', 'like', '%' . $this->inputfield . '%');
+    })
+    ->orWhereHas('writers', function($query) {
+        $query->where('name', 'like', '%' . $this->inputfield . '%');
+    })
+    ->with('bands', 'genres', 'artists', 'writers')
+    ->withAvg('song_ratings', 'rating')
+    ->get();
+ */
