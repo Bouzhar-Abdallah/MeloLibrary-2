@@ -40,4 +40,8 @@ class song extends Model
     {
         return $this->belongsToMany(Playlist::class, 'playlist_song');
     }
+    public function comments()
+{
+    return $this->hasMany(comment::class)->with('user');;
+}
 }

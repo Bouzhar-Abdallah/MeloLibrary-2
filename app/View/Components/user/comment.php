@@ -8,12 +8,10 @@ use Illuminate\View\Component;
 
 class comment extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+   public $comment;
+    public function __construct($comment)
     {
-        //
+        $this->comment = $comment;
     }
 
     /**
