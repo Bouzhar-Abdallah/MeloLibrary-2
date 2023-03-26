@@ -88,10 +88,10 @@
           </main>
 
           <!-- Secondary column (hidden on smaller screens) -->
-          <aside class=" w-96 bg-white border-l border-gray-200 overflow-y-auto lg:block">
+          <aside class="flex flex-col justify-between h-full w-96 bg-white border-l border-gray-200 overflow-y-auto ">
 
             <livewire:user.aside />
-
+            <x-user.newplaylistform />
           </aside>
         </div>
       </div>

@@ -72,6 +72,7 @@ Route::get('/admin/delete/band/{id}', [BandController::class, 'delete'])->name('
 Route::group(['middleware'=>['auth',UserMiddleware::class]], function () {
     Route::get('/user', [parentController::class, 'userIndex'])->name('user.index');
     Route::post('/add/song/playlist', [playlistsController::class, 'addSong'])->name('add.song.playlist');
+    Route::post('/add/playlist', [playlistsController::class, 'newPlaylist'])->name('create new playlist');
 });
 
 Route::get('/dashboard', [parentController::class, 'adminIndex'])->name('admin.index');

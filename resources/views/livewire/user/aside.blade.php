@@ -1,12 +1,12 @@
-<div>
-  <div id="music-player">
+<div class="">
+  <div id="music-player" class="">
     <audio id="audioPlayer" preload="auto"></audio>
     <div class="player" style="display: none;">
       <div class="bg-gray-100 flex flex-col items-center justify-center">
         <div class="max-w-xl bg-white shadow-lg w-full">
           <div class="relative h-20">
             <div class="p-2 inset-0 flex flex-col justify-end bg-indigo-500 to-gray-900 backdrop backdrop-blur-5 text-white">
-              <h3  class=" text-center capitalize">playlist : <span class="font-bold" id="playlist-name"></span></h3>
+              <h3 class=" text-center capitalize">playlist : <span class="font-bold" id="playlist-name"></span></h3>
               <div class="">
                 playing :
                 <span id="track-title" class="opacity-70"></span>
@@ -120,6 +120,7 @@
 
       @endforeach
     </div>
+
   </div>
 
   <script>
@@ -160,7 +161,7 @@
         audioPlayer.addEventListener('timeupdate', updateCurrentTime);
 
         // Update the playlist and track information
-        
+
         const playlistButtons = document.querySelectorAll('[data-playlist]');
         playlistButtons.forEach(button => {
           button.addEventListener('click', (event) => {
@@ -169,7 +170,7 @@
           });
         });
       }
-      
+
       function updateplayer() {
         document.getElementById('total-duration').innerText = formatTime(currentTrack.duration);
         document.getElementById('playlist-name').innerText = currentPlaylist.name;
@@ -236,3 +237,4 @@
       audioPlayer.addEventListener('ended', playNext);
     });
   </script>
+</div>
