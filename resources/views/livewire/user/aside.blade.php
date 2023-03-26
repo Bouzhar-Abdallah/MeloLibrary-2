@@ -58,7 +58,7 @@
       <audio id="audioPlayer" preload="auto"></audio>
     </div>
     <div class="no-playlist" style="display: none;">
-      <div class="bg-gray-100 flex items-center justify-center h-screen">
+      <div class="bg-gray-100 flex items-center justify-center ">
         <h2 class="text-xl text-gray-600">No playlist available</h2>
       </div>
     </div>
@@ -236,5 +236,9 @@
 
       audioPlayer.addEventListener('ended', playNext);
     });
+
+
+
+    
   </script>
 </div>
