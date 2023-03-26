@@ -11,12 +11,24 @@ class Aside extends Component
     public $playlists;
     public $playing_playlist;
     public $user;
-
+    public $listeners = ['addToPlaylist' => 'addToPlaylist'];
     public function setPlayingPlaylist($playlist)
     {
         $this->playing_playlist = $playlist;
         //dd($this->playing_playlist->name);
 
+    }
+    public function addToPlaylist($data){
+         
+         /* $playlist_id = $data['playlist_id'];
+         $song_id = $data['song_id'];
+ 
+         
+         $playlist = playlist::findOrFail($playlist_id);
+         $playlist->songs()->attach($song_id); */
+         
+         $this->render();
+        
     }
     public function arrangeData($playlists)
     {
@@ -52,11 +64,7 @@ class Aside extends Component
     public function mount()
     {
         $this->user = Auth::user();
-        //$this->playlists = $this->user->playlists();
-        /* $this->playlists = $this->user->playlists()
-        ->with('songs')
-        ->with('songs.artists', 'songs.bands', 'songs.genres')
-        ->get(); */
+        
         $playlists = $this->user->playlists()
             ->withCount(['songs as tracks_count' => function ($query) {
                 $query->where('archive', '!=', true);
@@ -80,6 +88,8 @@ class Aside extends Component
         } else {
             $this->playing_playlist = $this->playlists[0];
         }
+        
+
     }
     public function render()
     {
