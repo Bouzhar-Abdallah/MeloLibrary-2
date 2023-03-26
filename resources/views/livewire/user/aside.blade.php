@@ -125,7 +125,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const playlists = <?php echo json_encode($playlists); ?>;
-      console.log(playlists)
+      /* console.log(playlists) */
       const musicPlayer = document.getElementById('music-player');
       const player = musicPlayer.querySelector('.player');
       const noPlaylist = musicPlayer.querySelector('.no-playlist');

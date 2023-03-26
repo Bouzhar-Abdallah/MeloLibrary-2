@@ -11,6 +11,7 @@ use App\Http\Controllers\BandController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\parentController;
 use App\Http\Controllers\User;
+use App\Http\Controllers\user\playlists as playlistsController;
 use App\Http\Middleware\UserMiddleware as UserMiddleware; 
 
 //use App\Http\Middleware\UserMiddleware;
@@ -70,6 +71,7 @@ Route::get('/admin/delete/band/{id}', [BandController::class, 'delete'])->name('
 //route for user
 Route::group(['middleware'=>['auth',UserMiddleware::class]], function () {
     Route::get('/user', [parentController::class, 'userIndex'])->name('user.index');
+    Route::post('/add/song/playlist', [playlistsController::class, 'addSong'])->name('add.song.playlist');
 });
 
 Route::get('/dashboard', [parentController::class, 'adminIndex'])->name('admin.index');
