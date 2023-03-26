@@ -2,16 +2,18 @@
 
 namespace App\View\Components\user;
 
+use Carbon\Carbon;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class comment extends Component
 {
-   public $comment;
+    public $comment;
     public function __construct($comment)
     {
         $this->comment = $comment;
+        
     }
 
     /**

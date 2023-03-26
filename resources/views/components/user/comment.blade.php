@@ -3,7 +3,7 @@
         <img class="w-12 h-12 border-2 border-gray-300 rounded-full" alt="Anonymous's avatar" src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&faces=1&faceindex=1&facepad=2.5&w=500&h=500&q=80">
         <div class="flex-col mt-1">
             <div class="flex items-center flex-1 px-4 font-bold leading-tight">{{$comment->user->name}}
-                <span class="ml-2 text-xs font-normal text-gray-500">3 days ago</span>
+                <span class="ml-2 text-xs font-normal text-gray-500">1 day ago</span>
             </div>
             <div class="flex-1 px-2 ml-2 text-sm font-medium leading-loose text-gray-600">
                 {{$comment->text}}

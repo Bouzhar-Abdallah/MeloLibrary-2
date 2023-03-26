@@ -1,7 +1,8 @@
 <div class="">
-<div class="flex items-start space-x-4">
+<div class="flex items-center space-x-4 p-4 bg-indigo-500">
 
-  <h1>{{$song->title}}</h1>
+  <h1 class="font-bold text-lg capitalize text-white">{{$song->title}}</h1>
+  <h2 class=" text-white">comments</h2>
 </div>
 <section class="relative flex items-center justify-center antialiased  bg-gray-100 min-w-screen">
   <div class="container px-0 mx-auto sm:px-5">
@@ -19,7 +20,8 @@
     <form action="#" class="relative">
       <div class="border border-gray-300 rounded-lg shadow-sm overflow-hidden focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
         <label for="comment" class="sr-only">Add your comment</label>
-        <textarea rows="3" name="comment" id="comment" class="block w-full py-3 border-0 resize-none focus:ring-0 sm:text-sm" placeholder="Add your comment..."></textarea>
+        <textarea rows="3" name="comment" id="comment" class="block w-full py-3 border-0 resize-none focus:ring-0 sm:text-sm" 
+        placeholder="Add your comment..."></textarea>
 
         <!-- Spacer element to match the height of the toolbar -->
         <div class="py-2" aria-hidden="true">
