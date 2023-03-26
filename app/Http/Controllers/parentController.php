@@ -25,6 +25,21 @@ class parentController extends Controller
             compact('title')
         );
     }
+    public function userArtists(){
+        
+        $title = 'Artists';
+        return view('user.artists',compact('title'));
+    }
+    public function userBands(){
+        
+        $title = 'Bands';
+        return view('user.bands',compact('title'));
+    }
+    public function userGenres(){
+        
+        $title = 'Genres';
+        return view('user.genres',compact('title'));
+    }
     public function createSong(Request $request)
     {
         $title = 'create song';

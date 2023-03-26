@@ -3,6 +3,9 @@
 @section('title', $title)
 
 @section('content')
-    <h1>user landing page</h1>
+<div class="p-4">
+
     
+    <h1>bands</h1>
+</div>
 @endsection

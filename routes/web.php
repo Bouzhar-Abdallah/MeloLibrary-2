@@ -70,7 +70,11 @@ Route::get('/admin/delete/band/{id}', [BandController::class, 'delete'])->name('
 
 //route for user
 Route::group(['middleware'=>['auth',UserMiddleware::class]], function () {
-    Route::get('/user', [parentController::class, 'userIndex'])->name('user.index');
+    Route::get('/user', [parentController::class, 'userIndex'])->name('Home');
+    Route::get('/artists', [parentController::class, 'userArtists'])->name('Artists');
+    Route::get('/bands', [parentController::class, 'userBands'])->name('Bands');
+    Route::get('/genres', [parentController::class, 'userGenres'])->name('Genres');
+
     Route::post('/add/song/playlist', [playlistsController::class, 'addSong'])->name('add.song.playlist');
     Route::post('/add/playlist', [playlistsController::class, 'newPlaylist'])->name('create new playlist');
 });

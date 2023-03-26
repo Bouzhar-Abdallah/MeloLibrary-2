@@ -1,8 +1,6 @@
-
-
 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
-        <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />
+        <img class="rounded-t-lg" src="{{$song->cover_url}}" alt="" />
     </a>
     <div class="p-5">
         <a href="#">
@@ -20,9 +18,9 @@
             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton{{$song->id}}">
                 @foreach ($playlists as $playlist)
                 <li>
-                    
+
                     <form method="POST" action="{{ route('add.song.playlist') }}">
-            
+
                         @csrf
                         <input type="hidden" name="song_id" value="{{ $song->id }}">
                         <input type="hidden" name="playlist_id" value="{{ $playlist->id }}">
