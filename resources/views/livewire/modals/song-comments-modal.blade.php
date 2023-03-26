@@ -1,3 +1,5 @@
+
+
 <div class="">
 <div class="flex items-center space-x-4 p-4 bg-indigo-500">
 
@@ -20,7 +22,7 @@
     <form action="#" class="relative">
       <div class="border border-gray-300 rounded-lg shadow-sm overflow-hidden focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
         <label for="comment" class="sr-only">Add your comment</label>
-        <textarea rows="3" name="comment" id="comment" class="block w-full py-3 border-0 resize-none focus:ring-0 sm:text-sm" 
+        <textarea wire:model="newComment" rows="3" name="comment" id="comment" class="block w-full py-3 border-0 resize-none focus:ring-0 sm:text-sm" 
         placeholder="Add your comment..."></textarea>
 
         <!-- Spacer element to match the height of the toolbar -->
@@ -35,7 +37,7 @@
       <div class="absolute bottom-0 inset-x-0 pl-3 pr-2 py-2 flex justify-between">
 
         <div class="flex-shrink-0">
-          <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Post</button>
+          <button type="submit"  class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Post</button>
         </div>
       </div>
     </form>
