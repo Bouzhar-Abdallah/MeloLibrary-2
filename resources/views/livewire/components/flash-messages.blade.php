@@ -8,6 +8,8 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
+            <div class="bg-red-500"></div>
+            <div class="bg-blue-500"></div>
         </div>
     </div>
     @endforeach
