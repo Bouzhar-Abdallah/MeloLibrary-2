@@ -7,7 +7,8 @@
 
 
 
-<h1>bands</h1>
+
+
 
 </div>
 @endsection
