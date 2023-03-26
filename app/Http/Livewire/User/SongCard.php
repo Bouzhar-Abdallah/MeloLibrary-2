@@ -1,23 +1,19 @@
 <?php
 
-namespace App\View\Components\music;
+namespace App\Http\Livewire\User;
 
 use App\Models\song;
-use Closure;
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\Component;
+use Livewire\Component;
 
 class SongCard extends Component
 {
-    /**
-     * Create a new component instance.
-     */
     public $song;
     public $songOwners;
     public $playlists;
-    public function __construct(int $id)
+    public function mount(int $id)
     {
+        
         $this->song = song::with('bands', 'genres', 'artists', 'writers')
             ->withAvg('song_ratings', 'rating')
             ->find($id);
@@ -27,12 +23,8 @@ class SongCard extends Component
         $this->songOwners = implode(' ft ', array_merge($artistNames, $bandNames));
         
     }
-
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
+    public function render()
     {
-        return view('components.music.song-card');
+        return view('livewire.user.song-card');
     }
 }
