@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\user;
+namespace App\View\Components\music;
 
 use App\Models\song;
 use Closure;
@@ -8,16 +8,17 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
-class card extends Component
+class songCard extends Component
 {
     /**
      * Create a new component instance.
      */
-    public $songs;
+    public $song;
     public $playlists;
-    public function __construct()
+    public function __construct($song_id = 2)
     {
-        $this->songs = song::all();
+        
+        $this->song = song::find($song_id);
         $this->playlists = Auth::user()->playlists;
     }
 
@@ -26,6 +27,6 @@ class card extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.user.card');
+        return view('components.music.song-card');
     }
 }

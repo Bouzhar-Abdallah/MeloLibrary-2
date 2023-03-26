@@ -43,7 +43,7 @@ Route::get('/test', function () {
 
 
 Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
-Route::get('/user', [DashboardController::class, 'user'])->name('user');
+
 
 Route::get('/admin/update/artist/{id}', [ArtistController::class, 'update'])->name('admin.update.artist');
 Route::post('/admin/edit/artist/{id}', [ArtistController::class, 'edit'])->name('save.new.artist');

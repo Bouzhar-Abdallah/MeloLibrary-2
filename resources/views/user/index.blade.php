@@ -6,6 +6,6 @@
 <div class="p-4">
 
     
-    <x-user.card />
+    <x-music.song-card />
 </div>
 @endsection
