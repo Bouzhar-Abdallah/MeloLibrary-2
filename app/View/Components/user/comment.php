@@ -10,10 +10,14 @@ use Illuminate\View\Component;
 class comment extends Component
 {
     public $comment;
+    public $days_passed;
     public function __construct($comment)
     {
         $this->comment = $comment;
-        
+        $created_at = Carbon::parse($comment->created_at);
+        $today = Carbon::today();
+
+        $this->days_passed = $created_at->diffInDays($today);
     }
 
     /**

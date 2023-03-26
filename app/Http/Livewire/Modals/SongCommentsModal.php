@@ -11,10 +11,10 @@ class SongCommentsModal extends ModalComponent
 {
     public $song;
     public $comments = [];
-    public $newComment;
+    public $newComment = '';
     public function mount($id)
     {
-        $this->song =song::find($id);
+        $this->song = song::find($id);
         $this->comments = $this->song->comments;
     }
     public function createComment()
@@ -23,18 +23,21 @@ class SongCommentsModal extends ModalComponent
         $comment->user_id = Auth::user()->id;
         $comment->song_id = $this->song->id;
         $comment->text = $this->newComment;
-        
-        if ($comment->save()) {
-            $this->emit('flashMessage', 'comment created successfully', 'success');
-        }else {
-            $this->emit('flashMessage', 'something went wrong', 'failure');
+        if ($this->newComment != '') {
+            if ($comment->save()) {
+                $this->emit('flashMessage', 'comment created successfully', 'success');
+            } else {
+                $this->emit('flashMessage', 'something went wrong', 'failure');
+            }
+            $this->closeModal();
+        } else {
+            $this->emit('flashMessage', 'comment cannot be empty', 'info');
         }
-        $this->closeModal();
     }
-    public function report(){
+    public function report()
+    {
         $this->emit('flashMessage', 'comment reported successfully', 'success');
         $this->closeModal();
-        
     }
     public function render()
     {

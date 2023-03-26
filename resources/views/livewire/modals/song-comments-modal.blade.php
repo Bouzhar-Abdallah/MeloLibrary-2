@@ -22,7 +22,7 @@
     <div class="relative">
       <div class="border border-gray-300 rounded-lg shadow-sm overflow-hidden focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
         <label for="comment" class="sr-only">Add your comment</label>
-        <textarea wire:model="newComment" rows="3" name="comment" id="comment" class="block w-full py-3 border-0 resize-none focus:ring-0 sm:text-sm" 
+        <textarea required wire:model="newComment" rows="3" name="comment" id="comment" class="block w-full py-3 border-0 resize-none focus:ring-0 sm:text-sm" 
         placeholder="Add your comment..."></textarea>
 
         <!-- Spacer element to match the height of the toolbar -->
