@@ -12,7 +12,8 @@
         </button>
         <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
             <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-m-yellow dark:border-gray-700">
-                <li>
+            <div class="hidden">
+            <li>
                     <a href="/" class="block py-2 pl-3 pr-4 text-m-black bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-m-black dark:bg-blue-600 md:dark:bg-transparent" aria-current="page">Home</a>
                 </li>
                 <li>
@@ -49,6 +50,7 @@
                         </div>
                     </div>
                 </li>
+                </div>    
                 <li>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf

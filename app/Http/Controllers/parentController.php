@@ -106,4 +106,9 @@ class parentController extends Controller
         $title = 'all songs';
         return view('admin.allSongs',compact('title'));
     }
+    public function listComments(){
+        
+        $title = 'all comments';
+        return view('admin.allcomments',compact('title'));
+    }
 }
