@@ -9,9 +9,9 @@
             <dd class="mt-3 mx-auto">
                 <div class="flex items-center">
 
-                    <livewire:user.active-rating :songid="$song->id" :rating="(round($song->song_ratings_avg_rating, 1))" />
-
-
+                    
+                <livewire:user.active-rating :songid="$song->id" :rating="(round($song->song_ratings_avg_rating, 1))" />
+                
                 </div>
             </dd>
         </dl>

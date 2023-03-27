@@ -7,9 +7,7 @@
             <dd class="text-gray-500 text-sm">{{$songOwners}}</dd>
             <dt class="sr-only">Role</dt>
             <dd class="mt-3 mx-auto">
-                <div class="flex items-center">
-                <livewire:user.active-rating :songid="$song->id" :rating="(round($song->song_ratings_avg_rating, 1))" />
-                </div>
+                
             </dd>
         </dl>
     </div>
@@ -40,6 +38,18 @@
                 </svg>
 
             </button>
+            <div id="tooltip-share-{{$song->id}}" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                share
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+            <div data-href="{{route('public.song',$song->id)}}" data-tooltip-target="tooltip-share-{{$song->id}}" class="w-20 hover:bg-green-600 flex items-center justify-center">
+                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fexample.com%2Fyour-page&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />
+                    </svg>
+
+                </a>
+            </div>
 
             <div class="-ml-px w-0 flex-1 flex ">
                 <div id="tooltip-comment-{{$song->id}}-x" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">

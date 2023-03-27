@@ -13,6 +13,7 @@ class SongCard extends Component
     public $song;
     public $songOwners;
     public $playlists;
+    
     public function __construct($id)
     {
         
