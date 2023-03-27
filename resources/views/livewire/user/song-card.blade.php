@@ -9,9 +9,9 @@
             <dd class="mt-3 mx-auto">
                 <div class="flex items-center">
 
-                    
-                <livewire:user.active-rating :songid="$song->id" :rating="(round($song->song_ratings_avg_rating, 1))" />
-                
+
+                    <livewire:user.active-rating :songid="$song->id" :rating="(round($song->song_ratings_avg_rating, 1))" />
+
                 </div>
             </dd>
         </dl>
@@ -20,7 +20,7 @@
 
 
         <div class="-mt-px flex divide-x divide-gray-200">
-            <div class="w-0 flex-1 flex">
+            <div class="w-0 flex-1 flex ">
                 <div id="tooltip-playlist-{{$song->id}}" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                     add to playlist
                     <div class="tooltip-arrow" data-popper-arrow></div>
@@ -33,29 +33,32 @@
 
                 </button>
             </div>
-            <div id="tooltip-play-{{$song->id}}" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                play
-                <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-            <a href="{{route('public.song',$song->id)}}" data-tooltip-target="tooltip-play-{{$song->id}}" class="w-20 hover:bg-green-600 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
-                </svg>
-
-            </a>
-            <div id="tooltip-share-{{$song->id}}" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                share
-                <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-            <div data-href="{{route('public.song',$song->id)}}" data-tooltip-target="tooltip-share-{{$song->id}}" class="w-20 hover:bg-green-600 flex items-center justify-center">
-                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fexample.com%2Fyour-page&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />
+            <div class="w-0 flex-1 flex items-center justify-center hover:bg-green-600">
+                <div id="tooltip-play-{{$song->id}}" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    play
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+                <a href="{{route('public.song',$song->id)}}" data-tooltip-target="tooltip-play-{{$song->id}}" class=" hover:bg-green-600 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mx-auto text-gray-400">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
                     </svg>
 
                 </a>
             </div>
+            <div class="w-0 flex-1 flex items-center justify-center hover:bg-green-600">
+                <div id="tooltip-share-{{$song->id}}" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    share
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+                <div data-href="{{route('public.song',$song->id)}}" data-tooltip-target="tooltip-share-{{$song->id}}" class="  flex items-center justify-center">
+                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fexample.com%2Fyour-page&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />
+                        </svg>
 
+                    </a>
+                </div>
+            </div>
 
 
             <div class="-ml-px w-0 flex-1 flex ">
