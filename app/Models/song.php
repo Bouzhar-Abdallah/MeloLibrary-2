@@ -9,7 +9,7 @@ class song extends Model
 {
     use HasFactory;
     //use MediaAlly;
-    protected $fillable = ['title', 'artist', 'band' , 'url' , 'cover_url' , 'duration' , 'release_date', 'lyrics', 'genre'];
+    protected $fillable = ['title', 'artist', 'band', 'url', 'cover_url', 'duration', 'release_date', 'lyrics', 'genre'];
 
     public function bands()
     {
@@ -41,7 +41,12 @@ class song extends Model
         return $this->belongsToMany(Playlist::class, 'playlist_song');
     }
     public function comments()
-{
-    return $this->hasMany(comment::class)->with('user');;
-}
+    {
+        return $this->hasMany(comment::class)->with('user');
+    }
+    public function ratings()
+    {
+        
+        return $this->hasMany(song_ratings::class,'song_ratings');
+    }
 }

@@ -8,10 +8,10 @@
             <dt class="sr-only">Role</dt>
             <dd class="mt-3 mx-auto">
                 <div class="flex items-center">
-                    <x-normal-ratings :rating="(round($song->song_ratings_avg_rating, 1))" />
-                    <div class="ml-2 text-sm text-gray-600">
-                        {{ round($song->song_ratings_avg_rating, 1) }}
-                    </div>
+                    
+                    <livewire:user.active-rating :songid="$song->id" :rating="(round($song->song_ratings_avg_rating, 1))"/>
+                    <h1>{{round($song->song_ratings_avg_rating, 1)}}</h1>
+                    
                 </div>
             </dd>
         </dl>
@@ -49,7 +49,7 @@
                     comments
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
-                
+
                 <button wire:click='$emit("openModal", "modals.song-comments-modal", @json(["id" => $song->id]))' data-tooltip-target="tooltip-comment-{{$song->id}}" href="tel:+1-202-555-0170" class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:bg-indigo-600 hover:text-white">
 
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400">
