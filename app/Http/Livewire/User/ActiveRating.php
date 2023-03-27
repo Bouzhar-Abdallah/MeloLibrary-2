@@ -20,6 +20,8 @@ class ActiveRating extends Component
     public function rate($rate){
         $song = song::find($this->song_id);
         Auth::user()->ratings()->attach($this->song_id, ['rating' => $rate]);
+        $this->emit('flashMessage', 'song rated successfully', 'success');
+        $this->alreadyRated = true;
     }
     public function render()
     {

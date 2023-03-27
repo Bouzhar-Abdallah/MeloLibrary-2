@@ -8,7 +8,7 @@
 <div class="">
     
     <div class="flex items-center">
-    @for ($i = 1; $i <= 5; $i++) @if ($rating>$i)
+    @for ($i = 1; $i <= 5; $i++) @if ($rating>=$i)
         <label for="rating-{{$i}}" class="inline-block w-6 h-6 cursor-pointer" wire:click="rate('x')">
             <input type="radio" name="rating" value="{{$i}}" id="rating-{{$i}}" class="hidden">
             <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -28,6 +28,7 @@
 
         @endif
         @endfor
+        <h1 class="">{{$rating}}</h1>
         </div>
         <h1>rete this song</h1>
 

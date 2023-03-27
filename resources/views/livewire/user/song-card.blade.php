@@ -10,7 +10,7 @@
                 <div class="flex items-center">
                     
                     <livewire:user.active-rating :songid="$song->id" :rating="(round($song->song_ratings_avg_rating, 1))"/>
-                    <h1>{{round($song->song_ratings_avg_rating, 1)}}</h1>
+                    
                     
                 </div>
             </dd>
