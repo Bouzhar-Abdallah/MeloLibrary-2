@@ -58,6 +58,11 @@
     </header>
     @if ($searchString != '')
 
+    @if ($songs->isEmpty())
+    <div class="m-4">
+        <h1 class="font-bold text-xl text-black">No records found</h1>
+    </div>
+    @else
     <div class="bg-white py-4 px-4 my-3 sm:px-6  border-2 border-indigo-600">
         <div class="relative  mx-auto divide-y-2 divide-gray-200 ">
             <div class="mb-5">
@@ -65,12 +70,12 @@
             </div>
             <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 @foreach ($songs as $song )
-                
-                <x-user.song-card id="{{$song->id}}"/>
+                <x-user.song-card id="{{$song->id}}" />
                 @endforeach
-                <!-- artist songs -->
             </ul>
         </div>
     </div>
+    @endif
+
     @endif
 </div>
