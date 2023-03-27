@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use App\Providers\RouteServiceProvider;
+
 class LoginFormModal extends ModalComponent
 {
     public $email;
@@ -42,28 +43,23 @@ class LoginFormModal extends ModalComponent
             $request = request();
             $request->session()->regenerate();
 
-            $redirectTo = $this->redirectTo();
-            $this->emit('redirectTo', $redirectTo);
+            $role = Auth::user()->role->name;
+            //dd($role->name);
+            if ($role == 'admin') {
+                redirect('dashboard')->with('flashMessage', ['message' => 'admin logged in successfully', 'type' => 'success']);
+            } elseif ($role == 'SuperAdmin') {
+                redirect('dashboard');
+            } elseif ($role == 'user') {
+                redirect('/user')->with('flashMessage', ['message' => 'user logged in successfully', 'type' => 'success']);
+            } else {
+                return RouteServiceProvider::HOME;
+            }
+            
         } else {
             $this->addError('email', 'Incorrect email or password.');
         }
     }
 
-
-    protected function redirectTo(): string
-    {
-        $role = Auth::user()->role->name;
-        //dd($role->name);
-        if ($role == 'Admin') {
-            return route('dashboard');
-        } elseif ($role == 'SuperAdmin') {
-            return route('dashboard');
-        } elseif ($role == 'User') {
-            return route('dashboard');
-        } else {
-            return RouteServiceProvider::HOME;
-        }
-    }
     public function render()
     {
         return view('livewire.modals.login-form-modal');

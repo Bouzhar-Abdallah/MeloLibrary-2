@@ -226,12 +226,5 @@
   </div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    Livewire.on('redirectTo', function(url) {
-      window.location.href = url;
-    });
-  });
-</script>
 
 @endsection
