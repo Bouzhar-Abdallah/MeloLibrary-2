@@ -57,9 +57,7 @@
                                     <div class="flex">
 
                                         <x-normal-ratings :rating="(round($song->song_ratings_avg_rating, 1))" />
-                                        <div class="ml-2">
-                                            {{ round($song->song_ratings_avg_rating, 1) }}
-                                        </div>
+                                        
                                     </div>
                                 </td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-1 text-right text-sm font-medium sm:pr-1">
