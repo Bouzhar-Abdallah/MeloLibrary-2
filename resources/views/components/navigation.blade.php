@@ -1,7 +1,7 @@
 <nav class="px-2 bg-white border-gray-200 dark:bg-m-yellow dark:border-gray-700">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
         <a href="#" class="flex items-center">
-            <img src="{{ asset('images/svg/logo-no-background.svg') }}" class="h-10 mr-3 sm:h-10" alt="Flowbite Logo" />
+            <img src="{{ asset('images/logo-no-bg.png') }}" class=" h-16 mr-1 " alt="Flowbite Logo" />
 
         </a>
         <button data-collapse-toggle="navbar-dropdown" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-m-black rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-m-black dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-dropdown" aria-expanded="false">

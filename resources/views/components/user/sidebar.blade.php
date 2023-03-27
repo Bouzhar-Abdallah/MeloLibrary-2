@@ -1,7 +1,7 @@
 <div class="hidden w-28 bg-indigo-700 overflow-y-auto md:block">
   <div class="w-full py-6 flex flex-col items-center">
-    <div class="flex-shrink-0 flex items-center px-4">
-      <img src="{{ asset('images/svg/logo-no-background.svg') }}" class="h-10 mr-3 sm:h-10" alt="Flowbite Logo" />
+    <div class="flex-shrink-0 flex items-center">
+      <img src="{{ asset('images/logo-no-bg.png') }}" class=" mr-3 sm:h-10" alt="Flowbite Logo" />
     </div>
     <div class="flex-1 mt-6 w-full px-2 space-y-1">
       <!-- Current: "bg-indigo-800 text-white", Default: "text-indigo-100 hover:bg-indigo-800 hover:text-white" -->
