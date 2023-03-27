@@ -65,7 +65,8 @@
             </div>
             <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 @foreach ($songs as $song )
-                <livewire:user.song-card id="{{$song->id}}" />
+                
+                <x-user.song-card id="{{$song->id}}"/>
                 @endforeach
                 <!-- artist songs -->
             </ul>
