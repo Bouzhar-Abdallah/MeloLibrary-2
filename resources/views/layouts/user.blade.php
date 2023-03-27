@@ -1,5 +1,6 @@
 <x-header />
 <livewire:components.flash-messages />
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0" nonce="T3aZTJPg"></script>
 <div class="min-h-screen bg-gray-100">
 
   <body class="font-sans antialiased h-full overflow-hidden">

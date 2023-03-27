@@ -111,4 +111,9 @@ class parentController extends Controller
         $title = 'all comments';
         return view('admin.allcomments',compact('title'));
     }
+    public function publicSong($id){
+        $song = song::find($id);
+        $title = 'public';
+        return view('publicsong',compact('title','song'));
+    }
 }

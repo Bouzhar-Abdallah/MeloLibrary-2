@@ -32,6 +32,7 @@ use App\Http\Middleware\UserMiddleware as UserMiddleware;
 /* Guest Routes */
 
 Route::get('/', [parentController::class, 'guestIndex'])->name('guest.index');
+Route::get('/public/song/{id}', [parentController::class, 'publicSong'])->name('public.song');
 
 
 //user Routes
