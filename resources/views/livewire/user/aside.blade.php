@@ -14,7 +14,7 @@
               </div>
             </div>
           </div>
-          <div>
+          <div class="hidden">
             <div class="relative h-1 bg-gray-200">
               <div id="progress-bar" class="absolute h-full w-1/2 bg-green-500 flex items-center justify-end">
                 <div class="rounded-full w-3 h-3 bg-white shadow"></div>

@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth', UserMiddleware::class]], function () {
 });
 
 
+//ressources
 
 //admin Routes
 Route::group(['middleware' => ['auth', AdminMiddleware::class]], function () {
