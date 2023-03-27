@@ -11,7 +11,7 @@ class SongCard extends Component
     public $song;
     public $songOwners;
     public $playlists;
-    public function mount(int $id)
+    public function mount($id)
     {
         
         $this->song = song::with('bands', 'genres', 'artists', 'writers')

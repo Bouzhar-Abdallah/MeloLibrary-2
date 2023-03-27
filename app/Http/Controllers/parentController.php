@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\artist;
+use App\Models\band;
+use App\Models\genre;
 use App\Models\song;
 use Illuminate\Http\Request;
 
@@ -15,7 +18,8 @@ class parentController extends Controller
     public function userIndex()
     {
         $title = 'home';
-        return view('user.index',compact('title'));
+        $songs = song::all();
+        return view('user.index',compact('title','songs'));
     }
     public function adminIndex()
     {
@@ -28,17 +32,20 @@ class parentController extends Controller
     public function userArtists(){
         
         $title = 'Artists';
-        return view('user.artists',compact('title'));
+        $artists = artist::all();
+        return view('user.artists',compact('title','artists'));
     }
     public function userBands(){
         
         $title = 'Bands';
-        return view('user.bands',compact('title'));
+        $bands = band::all();
+        return view('user.bands',compact('title','bands'));
     }
     public function userGenres(){
         
         $title = 'Genres';
-        return view('user.genres',compact('title'));
+        $genres = genre::all();
+        return view('user.genres',compact('title','genres'));
     }
     public function createSong(Request $request)
     {
